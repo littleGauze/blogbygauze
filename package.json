@@ -1,0 +1,28 @@
+{
+  "name": "blogbygauze",
+  "version": "1.0.0",
+  "description": "test nodejs express and bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littleGauze/blogbygauze.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "bootstrap"
+  ],
+  "author": "littleGauze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littleGauze/blogbygauze/issues"
+  },
+  "homepage": "https://github.com/littleGauze/blogbygauze",
+  "dependencies": {
+    "ejs": "^2.3.3",
+    "express": "^4.13.1"
+  }
+}
