@@ -1,6 +1,12 @@
 body{
 	background-color: #f4f4f4;
 }
+div.container-fluid div.container{
+	padding: 0;
+}
+div.container-wrapper{
+	position: relative;
+}
 div.header{
 	background-color: #00AA7E;
 	box-shadow: 0 1px 3px 1px #ccc;
@@ -8,22 +14,39 @@ div.header{
 div.header-wrapper{
 	height: 60px;
 }
+div.log-wrapper{
+	padding: 0;
+	height: 60px;
+	text-align: center;
+}
 div.header-wrapper img{
-	height: 50px;
-	margin: 5px 0;
+	height: 100%;
 }
 div.header-wrapper ul{
 	display: inline-block;
 	vertical-align: top;
+	width: 100%;
 }
-div.header-wrapper ul li{
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background-color: orange;
-	margin: 10px 20px;
+div.nav-wrapper{
+	padding: 0;
 }
-
+ul.nav li a{
+	vertical-align: top;
+	color: white;
+	font-size: 30px;
+	height: 60px;
+	line-height: 36px;
+	text-align: center;
+	margin-top: -1px
+}
+ul.nav li a.active{
+	background-color: white;
+	color: #00AA7E;
+}
+ul.nav li a:hover{
+	background-color: white;
+	color: #00AA7E;
+}
 div.side{
 	margin: 10px 0;
 	background-color: white;
@@ -36,8 +59,20 @@ div.side .mine{
 div.side .mine img{
 	
 }
+div.side .mine p{
+	text-align: center;
+}
 div.side .mine a{
-	font-size: 20px;
+	text-decoration: none;
+	color: #555;
+}
+div.side .mine a.name{
+	font-size: 30px;
+	font-weight: bold;
+}
+div.side .mine a:hover{
+	text-decoration: none;
+	color: #555;
 }
 div.side h3{
 	margin-top: 40px;
@@ -109,20 +144,24 @@ div.blog p{
 	margin: 5px 20px;
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 5px;
+	line-height: 32px;
 }
 div.blog p a{
 	display: inline-block;
-	width: 32px;
-	height: 32px;
-	background-color: green;
-	text-indent: -9999px;
+	font-size: 25px;
+}
+div.blog p a.glyphicon-heart{
+	color: #EA211F;
+}
+div.blog p a:hover{
+	text-decoration: none;
 }
 div.blog a.comment{
 	margin-left: 20px;
 }
 div.blog p span{
 	vertical-align: top;
-	line-height: 32px;
+	line-height: 30px;
 	margin-left: 5px;
 }
 div.blog ul.comments{
@@ -130,4 +169,27 @@ div.blog ul.comments{
 }
 div.blog ul li{
 	word-break: break-all;
+}
+
+a.publish{
+	position: fixed;
+	top: 80px;
+	right: 20px;
+	font-size: 50px;
+	color: #00AA7E;
+	text-decoration: none;
+}
+a.publish:hover{
+	text-decoration: none;
+}
+
+@media screen and (max-width: 600px){
+	li[class*=col]{
+		padding: 0 3px;
+	}
+	div.header-wrapper img{
+		height: 50%;
+		margin-left: -10px;
+		margin-top: 15%;
+	}
 }

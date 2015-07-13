@@ -11,14 +11,18 @@
 <body>
 	<div class="container-fluid header">
 		<div class="container">
-			<div class="header-wrapper">
-				<img src="/imgs/logo.png" alt="logo">
-				<ul>
-					<li>find</li>
-					<li>like</li>
-					<li>home</li>
-					<li>about</li>
-				</ul>
+			<div class="header-wrapper row">
+				<div class="log-wrapper col-xs-3 col-sm-2">
+					<img src="/imgs/logo.png" alt="logo">
+				</div>
+				<div class="nav-wrapper col-xs-9 col-sm-8 col-md-6 col-lg-5">
+					<ul class="nav row">
+						<li class="col-xs-3"><a class="active glyphicon glyphicon-home" href="."></a></li>
+						<li class="col-xs-3"><a class="glyphicon glyphicon-heart" href=""></a></li>
+						<li class="col-xs-3"><a class="glyphicon glyphicon-user" href=""></a></li>
+						<li class="col-xs-3"><a class="glyphicon glyphicon-question-sign" href=""></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -27,11 +31,10 @@
 			<div class="side col-xs-12 col-sm-3">
 				<div class="mine">
 					<img src="/imgs/avator.jpg" alt="avator">
-					<p><a href="">Gauze</a></p>
-					<p>anything is possible.</p>
+					<p><a class="name" href="">Gauze</a></p>
 				</div>
-				<h3>推荐</h3>
-				<div class="others">
+				<h3 class="hidden-xs">推荐</h3>
+				<div class="others hidden-xs">
 					<div class="other">
 						<p><img class="avator" src="imgs/avator.jpg" alt="avator"><a class="name" href="">Gauze</a><a class="btn btn-success fallow" href="">关注</a></p>
 						<img src="/imgs/nice.jpg" alt="avator">
@@ -49,7 +52,7 @@
 					<div class="blog">
 						<div class="author"><img src="/imgs/avator.jpg" alt="avator"><a href="">Gauze</a></div>
 						<div class="picture"><img src="/imgs/nice.jpg" alt="pic"></div>
-						<p><a class="like" href="">like</a><span class="like text-primary">99次赞</span><a class="comment" href="">commnet</a><span class="comment text-primary">33条评论</span></p>
+						<p><a class="like glyphicon glyphicon-heart" title="赞" href=""></a><span class="like text-primary">99次赞</span><a class="comment glyphicon glyphicon-comment" title="评论" href=""></a><span class="comment text-primary">33条评论</span></p>
 						<ul class="comments">
 							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
 							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
@@ -58,7 +61,7 @@
 					<div class="blog">
 						<div class="author"><img src="/imgs/avator.jpg" alt="avator"><a href="">Gauze</a></div>
 						<div class="picture"><img src="/imgs/green.jpg" alt="pic"></div>
-						<p><a class="like" href="">like</a><span class="like text-primary">99次赞</span><a class="comment" href="">commnet</a><span class="comment text-primary">33条评论</span></p>
+						<p><a class="like glyphicon glyphicon-heart" title="赞" href=""></a><span class="like text-primary">99次赞</span><a class="comment glyphicon glyphicon-comment" title="评论" href=""></a><span class="comment text-primary">33条评论</span></p>
 						<ul class="comments">
 							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
 							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
@@ -66,6 +69,7 @@
 					</div>
 				</div>
 			</div>
+			<a class="publish glyphicon glyphicon-camera" title="发表" href=""></a>
 		</div>
 	</div>
 <script src="/js/jquery-2.1.4.min.js"></script>
