@@ -15,7 +15,7 @@ $(function(){
 		var sTop = _this.scrollTop();
 		if(sTop < 80){
 			publish.stop(true).fadeIn();
-		}else{
+		}else if(sTop > 100 && sTop < 500){
 			publish.stop(true).fadeOut();
 		}
 	});
