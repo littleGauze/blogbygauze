@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<title>Blog</title>
+</head>
+<body>
+	<div class="container-fluid header navbar-wrappr">
+		<div class="container">
+			<div class="header-wrapper row">
+				<div class="log-wrapper col-xs-3 col-sm-2">
+					<img src="/imgs/logo.png" alt="logo">
+				</div>
+				<div class="nav-wrapper col-xs-9 col-sm-8 col-md-6 col-lg-5">
+					<ul class="nav row">
+						<li class="col-xs-3">
+							<a class="<% if(!url || /^\/$/.test(url)) {%>
+									<%='active'%>
+								<% }; %>glyphicon glyphicon-heart" href=".">
+							</a>
+						</li>
+						<li class="col-xs-3">
+							<a class="<% if(/myfallows/.test(url)) {%>
+									<%='active'%>
+								<% }; %>glyphicon glyphicon-heart" href="/myfallows">
+							</a>
+						</li>
+						<li class="col-xs-3">
+							<a class="<% if(/myinfos/.test(url)) {%>
+									<%='active'%>
+								<% }; %>glyphicon glyphicon-user" href="/myinfos">
+							</a>
+						</li>
+						<li class="col-xs-3">
+							<a class="<% if(/aboutme/.test(url)) {%>
+									<%='active'%>
+								<% }; %>glyphicon glyphicon-question-sign" href="/aboutme">
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>

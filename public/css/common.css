@@ -1,6 +1,13 @@
 body{
 	background-color: #f4f4f4;
 }
+a:link,
+a:visited,
+a:active,
+a:focus{
+	text-decoration: none;
+	outline: none;
+}
 div.container-fluid div.container{
 	padding: 0;
 }
@@ -8,8 +15,11 @@ div.container-wrapper{
 	position: relative;
 }
 div.header{
+	width: 100%;
+	position: relative;
 	background-color: #00AA7E;
 	box-shadow: 0 1px 3px 1px #ccc;
+	z-index: 99;
 }
 div.header-wrapper{
 	height: 60px;
@@ -117,6 +127,9 @@ div.blog{
 	margin-bottom: 40px;
 	position: relative;
 }
+div.author{
+	position: relative;
+}
 div.author img{
 	width: 50px;
 	height: 50px;
@@ -130,12 +143,31 @@ div.author a{
 	margin-top: 10px;
 	vertical-align: top;
 }
+div.author span{
+	display: inline-block;
+	position: absolute;
+	top: 40px;
+	left: 80px;
+	color: #666;
+	font-size: 12px;
+}
 div.blog .picture{
 	position: relative;
 	margin-left: -2%;
 	width: 104%;
 	box-shadow: 0 0 2px 1px #ccc;
 	background-color: white;
+}
+span.tmp-heart{
+	position: absolute;
+	display: inline-block;
+	left: 50%;
+	top: 50%;
+	margin-left: -30px;
+	margin-top: -30px;
+	font-size: 60px;
+	opacity: 0.9;
+	color: #ea211f;
 }
 div.blog .picture img{
 	width: 100%;
