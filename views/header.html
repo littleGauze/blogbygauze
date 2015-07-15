@@ -20,23 +20,23 @@
 						<li class="col-xs-3">
 							<a class="<% if(!url || /^\/$/.test(url)) {%>
 									<%='active'%>
-								<% }; %>glyphicon glyphicon-home" href=".">
+								<% }; %>glyphicon glyphicon-home" href="/">
 							</a>
 						</li>
 						<li class="col-xs-3">
-							<a class="<% if(/myfallows/.test(url)) {%>
+							<a class="<% if(/myfallows\/?/.test(url)) {%>
 									<%='active'%>
 								<% }; %>glyphicon glyphicon-heart" href="/myfallows">
 							</a>
 						</li>
 						<li class="col-xs-3">
-							<a class="<% if(/myinfos/.test(url)) {%>
+							<a class="<% if(/myinfos\/?/.test(url)) {%>
 									<%='active'%>
 								<% }; %>glyphicon glyphicon-user" href="/myinfos">
 							</a>
 						</li>
 						<li class="col-xs-3">
-							<a class="<% if(/aboutme/.test(url)) {%>
+							<a class="<% if(/aboutme\/?/.test(url)) {%>
 									<%='active'%>
 								<% }; %>glyphicon glyphicon-question-sign" href="/aboutme">
 							</a>

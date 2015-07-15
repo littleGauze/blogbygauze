@@ -33,13 +33,13 @@
 				<div class="mynav-wrapper">	
 					<ul class="nav clearfix">
 						<li class="col-xs-4 col-sm-3 col-md-2">
-							<a href="/myinfos"><span class="<% if(/^\/$/.test(url)) {%>active<% } %> glyphicon glyphicon-picture"></span>动态</a>
+							<a href="/myinfos"><span class="<% if(/^\/myinfos\/?$/.test(url)) {%>active<% } %> glyphicon glyphicon-picture"></span>动态</a>
 						</li>
 						<li class="col-xs-4 col-sm-3 col-md-2">
-							<a href="/myinfos/atme"><span class="<% if(/atme$/.test(url)) {%>active<% } %>">@</span>与我相关</a>
+							<a href="/myinfos/atme"><span class="<% if(/atme\/?$/.test(url)) {%>active<% } %>">@</span>与我相关</a>
 						</li>
 						<li class="col-xs-4 col-sm-3 col-md-2">
-							<a href="/myinfos/friends"><span class="<% if(/friends$/.test(url)) {%>active<% } %> glyphicon glyphicon-list"></span>好友</a>
+							<a href="/myinfos/friends"><span class="<% if(/friends\/?$/.test(url)) {%>active<% } %> glyphicon glyphicon-list"></span>好友</a>
 						</li>
 					</ul>
 				</div>
