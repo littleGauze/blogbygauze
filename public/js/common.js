@@ -47,7 +47,8 @@ $(function(){
 	$("a.comment").click(function(e){
 		var _this = $(this);
 		var form = _this.parents('div.blog').find('form');
-		form.slideDown('fast')
+		form.stop(true)
+			.slideDown('fast')
 			.find('input[name="comment"]').focus();
 	});
 
@@ -55,7 +56,7 @@ $(function(){
 	$("input[name='comment']").blur(function(e){
 		var _this = $(this);
 		var form = _this.parents('form');
-		form.slideUp('fast');
+		form.stop(true).slideUp('fast');
 	});
 
 });

@@ -1,26 +1,7 @@
 ﻿<%- include('header.html'); %>
 	<div class="container">
 		<div class="container-wrapper row">
-			<div class="side col-xs-12 col-sm-3">
-				<div class="mine">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<p><a class="name" href="">Gauze</a></p>
-				</div>
-				<h3 class="hidden-xs">推荐</h3>
-				<div class="others hidden-xs">
-					<div class="other">
-						<p><img class="avator" src="imgs/avator.jpg" alt="avator"><a class="name" href="">Gauze</a><a class="btn btn-success fallow" href="">关注</a></p>
-						<img src="/imgs/nice.jpg" alt="avator">
-						<p>anything is impossible.</p>
-					</div>
-					<div class="other">
-						<p><img class="avator" src="imgs/avator.jpg" alt="avator"><a class="name" href="">NeaLi</a><a class="btn btn-success fallow" href="">关注</a></p>
-						<img src="/imgs/green.jpg" alt="avator">
-						<p>anything is impossible.</p>
-					</div>
-				</div>
-			</div>
-			<div class="main col-xs-12 col-sm-9">
+			<div class="main col-xs-12 col-sm-12">
 				<div class="main-wrapper clearfix">
 					<div class="blog">
 						<div class="author">
@@ -29,11 +10,22 @@
 							<span>2015-7-13 22:14:23</span>
 						</div>
 						<div class="picture"><img src="/imgs/nice.jpg" alt="pic"></div>
-						<p><a class="like glyphicon glyphicon-heart" title="赞" href=""></a><span class="like text-primary">99次赞</span><a class="comment glyphicon glyphicon-comment" title="评论" href=""></a><span class="comment text-primary">33条评论</span></p>
+						<p>
+							<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
+							<span class="like text-primary">99次赞</span>
+							<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
+							<span class="comment text-primary">33条评论</span>
+						</p>
 						<ul class="comments">
 							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
 							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
 						</ul>
+						<form method="" class="form col-xs-12" style="display: none;">
+							<div class="col-xs-10">
+								<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
+							</div>
+							<input class="btn btn-success btn-sm" type="button" value="发表">
+						</form>
 					</div>
 					<div class="blog">
 						<div class="author">
@@ -42,15 +34,25 @@
 							<span>2015-7-13 22:14:23</span>
 						</div>
 						<div class="picture"><img src="/imgs/green.jpg" alt="pic"></div>
-						<p><a class="like glyphicon glyphicon-heart" title="赞" href=""></a><span class="like text-primary">99次赞</span><a class="comment glyphicon glyphicon-comment" title="评论" href=""></a><span class="comment text-primary">33条评论</span></p>
+						<p>
+							<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
+							<span class="like text-primary">99次赞</span>
+							<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
+							<span class="comment text-primary">33条评论</span>
+						</p>
 						<ul class="comments">
 							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
 							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
 						</ul>
+						<form method="" class="form col-xs-12" style="display: none;">
+							<div class="col-xs-10">
+								<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
+							</div>
+							<input class="btn btn-success btn-sm" type="button" value="发表">
+						</form>
 					</div>
 				</div>
 			</div>
-			<a class="publish glyphicon glyphicon-camera" title="发表" href=""></a>
 		</div>
 	</div>
 <%- include('footer.html')%>

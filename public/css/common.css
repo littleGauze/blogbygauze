@@ -8,6 +8,12 @@ a:focus{
 	text-decoration: none;
 	outline: none;
 }
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
 div.container-fluid div.container{
 	padding: 0;
 }
@@ -215,8 +221,110 @@ a.publish:hover{
 	text-decoration: none;
 }
 
+/*myinfos css*/
+div.myinfo{
+	position: relative;
+	margin-top: 10px;
+}
+div.myinfo-wrapper{
+	position: relative;
+	background-color: white;
+	box-shadow: 0 0 3px 2px #ccc;
+	padding: 10px; 
+}
+div.myinfo div.avator{
+	
+}
+div.myinfo div.avator img{
+	width: 100%;
+}
+div.myinfo div.details{
+	display: inline-block;
+	max-height: 200px;
+	margin-top: 10px;
+	margin-left: -20px;
+	overflow: hidden;
+}
+div.myinfo div.details h3{
+	font-size: 30px;
+	font-weight: bold;
+	color: #555;
+}
+div.myinfo div.details p{
+	word-wrap: break-all;
+	word-break: break-all;
+}
+div.impression{
+	position: relative;
+	padding: 20px 10px; 
+}
+div.imp-wrapper{
+	margin: 5px; 
+	max-height: 150px;
+	overflow: auto;
+}
+div.impression h3{
+	text-indent: 5px;
+	color: #00AA7E;
+	font-weight: bold;
+	word-wrap: break-all;
+}
+div.imp-wrapper span{
+	padding: 3px 8px;
+	float: left;
+	border-radius: 5px;
+	box-shadow: 0 0 2px 1px #ddd;
+	margin: 5px;
+}
+div.myinfo div.action{
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+div.myinfo div.action a{
+	color: #888;
+	font-size: 20px;
+	padding: 0 5px;
+	background-color: white;
+}
+div.myinfo div.action a.setting:hover{
+    color: #4cae4c;
+}
+div.myinfo div.action a.logout:hover{
+    color: #d43f3a;
+}
+
+div.mynav-wrapper{
+	position: relative;
+	border: 1px solid #ddd;
+	background-color: white;
+	box-shadow: 0 0 3px 1px #ccc;
+	width: 104%;
+	margin-left: -2%;
+	z-index: 9;
+}
+div.mynav-wrapper li a{
+	text-align: center;
+	color: #555;
+	font-size: 12px;
+	margin-top: 0;
+}
+div.mynav-wrapper li a:hover{
+	color: #555;
+}
+div.mynav-wrapper li a span{
+	display: block;
+	line-height: 20px;
+	font-size: 25px;
+	color: #555;
+}
+div.mynav-wrapper li a span.active{
+	color: #00AA7E;
+}
+
 @media screen and (max-width: 600px){
-	li[class*=col]{
+	div.nav-wrapper li[class*=col]{
 		padding: 0 3px;
 	}
 	div.header-wrapper img{

@@ -1,56 +1,56 @@
 ﻿<%- include('header.html'); %>
 	<div class="container">
 		<div class="container-wrapper row">
-			<div class="side col-xs-12 col-sm-3">
-				<div class="mine">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<p><a class="name" href="">Gauze</a></p>
-				</div>
-				<h3 class="hidden-xs">推荐</h3>
-				<div class="others hidden-xs">
-					<div class="other">
-						<p><img class="avator" src="imgs/avator.jpg" alt="avator"><a class="name" href="">Gauze</a><a class="btn btn-success fallow" href="">关注</a></p>
-						<img src="/imgs/nice.jpg" alt="avator">
-						<p>anything is impossible.</p>
+			<div class="myinfo">
+				<div class="myinfo-wrapper clearfix">
+					<div class="infos col-xs-12 col-md-6">
+						<div class="avator col-xs-5">
+							<img src="/imgs/avator.jpg" alt="avator">
+						</div>
+						<div class="details col-xs-7">
+							<h3>Gauze</h3>
+							<p>anything is possible.</p>
+						</div>
 					</div>
-					<div class="other">
-						<p><img class="avator" src="imgs/avator.jpg" alt="avator"><a class="name" href="">NeaLi</a><a class="btn btn-success fallow" href="">关注</a></p>
-						<img src="/imgs/green.jpg" alt="avator">
-						<p>anything is impossible.</p>
+					<div class="impression col-xs-12 col-md-6">
+						<h3>好友印象</h3>
+						<div class="imp-wrapper">
+							<span class="bg-success">nice guy</span>
+							<span class="bg-danger">nice guy</span>
+							<span class="bg-warning">nice guy</span>
+							<span class="bg-primary">nice guy</span>
+							<span class="bg-info">nice guy</span>
+							<span class="bg-success">nice guy</span>
+							<span class="bg-danger">nice guy</span>
+							<span class="bg-primary">nice guy</span>
+							<span class="bg-warning">nice guy</span>
+						</div>
 					</div>
+					<div class="action"><a class="setting glyphicon glyphicon-cog" title="设置" href=""></a><a class="logout glyphicon glyphicon-off" title="登出" href=""></a></div>
 				</div>
 			</div>
-			<div class="main col-xs-12 col-sm-9">
-				<div class="main-wrapper clearfix">
-					<div class="blog">
-						<div class="author">
-							<img src="/imgs/avator.jpg" alt="avator">
-							<a href="">Gauze</a>
-							<span>2015-7-13 22:14:23</span>
-						</div>
-						<div class="picture"><img src="/imgs/nice.jpg" alt="pic"></div>
-						<p><a class="like glyphicon glyphicon-heart" title="赞" href=""></a><span class="like text-primary">99次赞</span><a class="comment glyphicon glyphicon-comment" title="评论" href=""></a><span class="comment text-primary">33条评论</span></p>
-						<ul class="comments">
-							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
-							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
-						</ul>
-					</div>
-					<div class="blog">
-						<div class="author">
-							<img src="/imgs/avator.jpg" alt="avator">
-							<a href="">Gauze</a>
-							<span>2015-7-13 22:14:23</span>
-						</div>
-						<div class="picture"><img src="/imgs/green.jpg" alt="pic"></div>
-						<p><a class="like glyphicon glyphicon-heart" title="赞" href=""></a><span class="like text-primary">99次赞</span><a class="comment glyphicon glyphicon-comment" title="评论" href=""></a><span class="comment text-primary">33条评论</span></p>
-						<ul class="comments">
-							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
-							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
-						</ul>
-					</div>
+			<div class="main col-xs-12 col-sm-12">
+				<div class="mynav-wrapper">	
+					<ul class="nav clearfix">
+						<li class="col-xs-4 col-sm-3 col-md-2">
+							<a href="/myinfos"><span class="<% if(/^\/$/.test(url)) {%>active<% } %> glyphicon glyphicon-picture"></span>动态</a>
+						</li>
+						<li class="col-xs-4 col-sm-3 col-md-2">
+							<a href="/myinfos/atme"><span class="<% if(/atme$/.test(url)) {%>active<% } %>">@</span>与我相关</a>
+						</li>
+						<li class="col-xs-4 col-sm-3 col-md-2">
+							<a href="/myinfos/friends"><span class="<% if(/friends$/.test(url)) {%>active<% } %> glyphicon glyphicon-list"></span>好友</a>
+						</li>
+					</ul>
 				</div>
+				<% if(type == 'posted') {%>
+					<%- include('myinfos_posted.html') %>
+				<% }else if(type == 'atme') {%>
+					<%- include('myinfos_atme.html') %>
+				<% }else if(type == 'friends') {%>
+					<%- include('myinfos_friends.html') %>
+				<% }%>
 			</div>
-			<a class="publish glyphicon glyphicon-camera" title="发表" href=""></a>
 		</div>
 	</div>
 <%- include('footer.html')%>
