@@ -129,6 +129,10 @@ div.main-wrapper{
 	background-color: white;
 	box-shadow: 0 0 3px 1px #ccc;
 }
+div.main-wrap{
+	width: 106%;
+	margin-left: -3%;
+}
 div.blog{
 	margin-bottom: 40px;
 	position: relative;
@@ -300,8 +304,8 @@ div.mynav-wrapper{
 	border: 1px solid #ddd;
 	background-color: white;
 	box-shadow: 0 0 3px 1px #ccc;
-	width: 104%;
-	margin-left: -2%;
+	width: 106%;
+	margin-left: -3%;
 	z-index: 9;
 }
 div.mynav-wrapper li a{
@@ -323,6 +327,74 @@ div.mynav-wrapper li a span.active{
 	color: #00AA7E;
 }
 
+/* atme css */
+div.msg-item{
+	background-color: white;
+	box-shadow: 0 0 3px 1px #ccc;
+	border-radius: 5px;
+	margin: 10px 0;
+}
+div.item-wrap{
+	padding: 30px 10px;
+}
+div.msg-item h3{
+	line-height: 30px;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-top: -20px;
+}
+div.msg-item h3 span{
+	font-size: 25px;
+	color: #aaa;
+}
+div.msg-item h3 a{
+	float: right;
+	font-size: 20px;
+	color: #666;
+}
+div.msg-item h3 a.del:hover{
+	color: #d43f3a;
+}
+div.msg-item h3 a.reply:hover{
+	color: #4cae4c;
+}
+div.msg-content{
+	background-color: #f2f2f2;
+	padding: 10px;
+}
+div.msg-item a.avator{
+	position: relative;
+	display: block;
+}
+div.msg-item a.avator img{
+	width: 40px;
+	height: 40px;
+}
+div.msg-item a.avator span{
+	vertical-align: top;
+	margin-left: 5px;
+}
+div.msg-item a.avator span.time{
+	position: absolute;
+	left: 40px;
+	top: 20px;
+	font-size: 12px;
+	color: #aaa;
+}
+div.msg-content div.post-link a{
+	display: block;
+}
+div.msg-content div.post-link a img{
+	width: 60px;
+	height: 60px;
+}
+div.msg-content div.post-link a span{
+	vertical-align: top;
+	padding: 5px;
+}
+div.item-wrap ul.comments{
+	margin-top: 5px;
+}
 @media screen and (max-width: 600px){
 	div.nav-wrapper li[class*=col]{
 		padding: 0 3px;

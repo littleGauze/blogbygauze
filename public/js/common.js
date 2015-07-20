@@ -10,6 +10,7 @@ $(function(){
 
 	//window.scroll listening
 	var publish = $("div.publish-wrapper");
+	var mynav = $(".mynav-wrapper");
 	$(window).scroll(function(e){
 		var _this = $(this);
 		var sTop = _this.scrollTop();
@@ -18,6 +19,12 @@ $(function(){
 		}else if(sTop > 100 && sTop < 500){
 			publish.stop(true).fadeOut();
 		}
+
+		if(mynav[0]){
+			var top = mynav.offset().top;
+			
+		}
+
 	});
 
 	//double click like it
