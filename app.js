@@ -15,6 +15,11 @@ app.set('view engine', 'html');
 
 app.use(express.static(__dirname + '/public'));
 
+app.use(function(req, res, next){
+	res.locals.url = req.path;
+	next();
+});
+
 app.use('/', index);
 app.use('/myfallows', myfallows);
 app.use('/myinfos', myinfos);
