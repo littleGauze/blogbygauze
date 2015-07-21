@@ -1,10 +1,38 @@
 ﻿<%- include('header.html'); %>
 	<div class="container">
-		<div class="container-wrapper row">
-			<div class="side col-xs-5">
-				<div class="mine">
+		<div class="container-wrap">
+			<div class="aboutme clearfix">
+				<div class="avator col-xs-12 col-md-5">
 					<img src="/imgs/avator.jpg" alt="avator">
-					<p><a class="name" href="">Gauze</a></p>
+					<p>Gauze</p>
 				</div>
+				<div class="desc col-xs-12 col-md-7">
+					<h3>小纱布</h3>
+					<p>一位有着设计梦的前端攻城狮。</p>
+					<span>如有疑问请留言</span>
+				</div>
+				<div class="message col-xs-12">
+					<div class="message-wrapper">
+						<div class="msg">
+							<h3><span>Q</span>: 你是谁？<a title="回复" href="" class="glyphicon glyphicon-share"></a></h3>
+							<ul class="answer">
+								<li>我就是我，是颜色不一样的烟火。</li>
+								<li>楼上是逗比吗？ 哈哈哈 </li>
+							</li>
+						</div>
+						<div class="msg">
+							<h3><span>Q</span>: 你是谁？<a title="回复" href="" class="glyphicon glyphicon-share"></a></h3>
+							<ul class="answer">
+								<li>我就是我，是颜色不一样的烟火。</li>
+							</li>
+						</div>
+						<form action="" class="form leave-msg clearfix">
+							<textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+							<input type="button" class="btn btn-success pull-right" value="留言">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 <%- include('footer.html')%>

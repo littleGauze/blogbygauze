@@ -439,35 +439,106 @@ div.friends-list{
 div.list-wrapper{
 	margin: 0 20px;
 }
-a.list-item{
+div.list-item{
 	display: block;
 	position: relative;
 	text-decoration: none;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #ddd;
 }
-a.list-item img{
+div.list-item img{
 	width: 60px;
 	height: 60px;
 	margin: 0 10px;
 }
-a.list-item span{
+div.list-item span{
 	display: inline-block;
 	font-size: 25px;
 	vertical-align: top;
 	margin-top: 15px;
 	color: #444;
 }
-a.list-item i{
+div.list-item a{
+	display: inline-block;
+}
+div.list-item a.action{
 	position: absolute;
 	right: 10px;
 	top: 20px;
 	font-size: 25px;
 }
-a.list-item:hover{
+div.list-item:hover{
 	text-decoration: none;
 	background-color: #f4f4f4;
-	cursor: pointer;
+}
+
+div.aboutme{
+	margin: 10px 0;
+	background-color: white;
+	box-shadow: 0 0 3px 1px #ccc;
+}
+div.aboutme div.avator{
+	padding: 30px;
+	text-align: center;
+}
+div.aboutme div.avator img{
+	width: 70%;
+}
+div.aboutme div.avator p{
+	font-size: 30px;
+	color: #555;
+}
+div.aboutme div.desc{
+	padding: 30px;
+}
+div.aboutme div.desc h3{
+	font-size: 30px;
+}
+div.aboutme div.desc p{
+	text-indent: 30px;
+	min-height: 200px;
+	color: #666;
+	font-size: 20px;
+}
+div.aboutme div.desc span{
+	font-size: 16px;
+	color: #666;
+}
+div.message-wrapper{
+	margin: 30px 0;
+}
+div.message-wrapper div.msg{
+	margin-bottom: 20px;
+}
+div.message-wrapper div.msg h3{
+	position: relative;
+	box-shadow: 0 0 3px 1px #ccc;
+	text-indent: 10px;
+	font-size: 20px;
+	line-height: 40px;
+}
+div.message-wrapper div.msg h3 a{
+	position: absolute;
+	color: #777;
+	right: 10px;
+	top: 10px;
+}
+div.message-wrapper div.msg ul li{
+	position: relative;
+	background-color: #f1f1f1;
+	line-height: 30px;
+	text-indent: 15px;
+	border-bottom: 1px dashed #ccc;
+}
+form.leave-msg{
+	margin-bottom: 30px;
+}
+form.leave-msg textarea{
+	resize: none;
+}
+form.leave-msg input{
+	margin-top: 5px;
+	width: 100px;
 }
 @media screen and (max-width: 600px){
 	div.nav-wrapper li[class*=col]{
