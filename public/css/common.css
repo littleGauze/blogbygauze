@@ -121,6 +121,26 @@ div.side .other a.fallow{
 	padding: 0 5px;
 }
 
+div.no-login{
+	position: relative;
+	margin-top: 30px;
+}
+
+div.no-login form input{
+	margin-top: 15px;
+}
+div.no-login form input[type=button]{
+	width: 100%;
+}
+div.no-login p{
+	text-align: center;
+	margin-top: 5px;
+	font-size: 12px;
+}
+div.no-login p a:hover{
+	text-decoration: underline;
+}
+
 div.main{
 	margin: 10px 0;
 	padding: 0 3%;
