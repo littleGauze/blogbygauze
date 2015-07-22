@@ -78,7 +78,6 @@ $(function(){
 		//提交信息
 		$.post('/'+path, params, function(res){
 			var status = res.result_code;
-			console.log(res);
 			showAlert(res.result_desc, status);
 		});
 		
@@ -90,7 +89,6 @@ $(function(){
 function showAlert(tips, input){
 	//ALERT_TPL
 	var alert = $(ALERT_TPL);
-	console.log(typeof input);
 	if(typeof input == 'number'){
 		alert
 			.removeClass('alert-danger')

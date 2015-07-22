@@ -11,6 +11,8 @@ router.post('/', function(req, res){
 	};
 	
 	Users.login(params, function(result){
+		result = JSON.parse(result);
+		req.session.userinfo = result.userinfo;
 		res.send(result);
 	});
 });

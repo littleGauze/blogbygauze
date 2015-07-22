@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var url = require('url');
 var ejs = require('ejs');
 var utils = require('./common/Utils');
@@ -19,6 +20,11 @@ app.set('views', __dirname + '/views');
 app.engine(".html", ejs.__express);
 app.set('view engine', 'html');
 
+app.use(session({
+	secret: 'nealli',
+	resave: false,
+	saveUninitialized: true
+}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -26,6 +32,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next){
 	req.auth = utils.getAuth(32, config.token);
+	res.locals.userinfo = req.session.userinfo;
 	res.locals.url = req.path;
 	next();
 });

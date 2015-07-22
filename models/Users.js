@@ -1,6 +1,6 @@
 var superagent = require('superagent');
 var Users = function(){};
-	Users.prototype.baseUrl = 'http://nblog.9451.com';
+	Users.prototype.baseUrl = 'http://localhost';
 
 //用户注册
 Users.prototype.register = function(params, callback){
