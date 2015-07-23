@@ -66,6 +66,13 @@ $(function(){
 		form.stop(true).slideUp('fast');
 	});
 
+	//logout
+	$("a.logout").click(function(e){
+		if(confirm('确定要登出吗？')){
+			window.location = '/logout';
+		}
+	});
+
 });
 
 //警告框
@@ -73,3 +80,39 @@ var ALERT_TPL = '<div class="alert alert-danger alert-dismissible" role="alert">
 			  	'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 			  	'<label></label>'+
 			'</div>';
+
+//生成随机字符
+function getRandomKey(length){
+	var str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
+	var key = '';
+
+	for(var i=0; i<length; i++){
+		var random = this.randomNum(0,63);
+		key += str.charAt(random);
+	}
+
+	return key;
+};
+
+//生成随机数
+function randomNum(start, end){
+	end = end || start && (start = 0);
+
+	return Math.floor(Math.random() * end) + start;
+}
+
+//将字符串打撒再返回
+function shuffleStr(str){
+	var rs = '';
+	var orgin = str.split('');
+	var length = str.length;
+	
+	while(length){
+		var index = this.randomNum(0, length);
+		var pice = orgin.splice(index, 1);
+		rs += pice;
+		length--;
+	}
+
+	return rs;
+}

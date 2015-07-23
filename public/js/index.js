@@ -42,6 +42,8 @@ $(function(){
 		var action = this.id;
 		var form = _this.parents('form')[0];
 		
+		var isReg = $(reuserpass).is(':hidden');
+		var btn = form.submit;
 		var username = form.username;
 		var userpass = form.userpass;
 		var reuserpass = form.reuserpass;
@@ -58,12 +60,12 @@ $(function(){
 		if(!upass){
 			showAlert('密码不能为空!', userpass);
 			return false;
-		}else if(upass.length < 6){
+		}else if(isReg && upass.length < 6){
 			showAlert('密码长度必须大于6位!', userpass);
 			return false;
 		}
 		
-		if(!$(reuserpass).is(':hidden') && upass != reupass){
+		if(isReg && upass != reupass){
 			showAlert('两次密码输入不一致!', reuserpass);
 			return false;
 		}
@@ -75,10 +77,18 @@ $(function(){
 		}
 
 		var path = params.action.toLowerCase();
+		var tips1 = (path=='login')?'正在登录...':'正在注册...';
+		var tips2 = (path=='login')?'登录成功! 正在跳转...':'注册成功! 返回登录...';
+		$(btn).prop('disabled', true).val(tips1);
 		//提交信息
 		$.post('/'+path, params, function(res){
 			var status = res.result_code;
-			showAlert(res.result_desc, status);
+			if(status == 200){
+				$(btn).prop('disabled', false).val(tips2);
+				setTimeout(function(){window.location = '/'}, 1000);
+			}else{
+				showAlert(res.result_desc);
+			}
 		});
 		
 	});
@@ -89,12 +99,6 @@ $(function(){
 function showAlert(tips, input){
 	//ALERT_TPL
 	var alert = $(ALERT_TPL);
-	if(typeof input == 'number'){
-		alert
-			.removeClass('alert-danger')
-			.addClass('alert-success');
-		input = null;
-	}
 	alert.find('label').text(tips);
 	input && input.focus();
 	$("div.no-login").prepend(alert);

@@ -13,7 +13,10 @@ var myfallows = require('./routes/myfallows');
 var myinfos = require('./routes/myinfos');
 var aboutme = require('./routes/aboutme');
 var register = require('./routes/register');
+var settings = require('./routes/settings');
+var qiniu = require('./routes/qiniu-api');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 
 app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname + '/views');
@@ -42,7 +45,10 @@ app.use('/myfallows', myfallows);
 app.use('/myinfos', myinfos);
 app.use('/aboutme', aboutme);
 app.use('/register', register);
+app.use('/settings', settings);
+app.use('/qiniu', qiniu);
 app.use('/login', login);
+app.use('/logout', logout);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

@@ -1,6 +1,7 @@
 var superagent = require('superagent');
+var config = require('../common/config')
 var Users = function(){};
-	Users.prototype.baseUrl = 'http://localhost';
+	Users.prototype.baseUrl = config.mysqlUrl;
 
 //用户注册
 Users.prototype.register = function(params, callback){
