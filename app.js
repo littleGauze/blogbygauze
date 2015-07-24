@@ -35,6 +35,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next){
 	req.auth = utils.getAuth(32, config.token);
+	res.locals.bucketLocation = config.qiuiUrl + '/';
 	res.locals.userinfo = req.session.userinfo;
 	res.locals.url = req.path;
 	next();

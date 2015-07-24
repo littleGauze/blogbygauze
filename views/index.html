@@ -15,7 +15,7 @@
 				<% } else {%>
 				<div class="mine">
 					<img src="/imgs/avator.jpg" alt="avator">
-					<p><a class="name" href=""><%= userinfo.user_name %></a></p>
+					<p><a class="name" href=""><%= userinfo.user_nick || userinfo.user_name %></a></p>
 					<a class="logout glyphicon glyphicon-off" title="登出" href="javascript:void(0);"></a>
 				</div>
 				<% } %>

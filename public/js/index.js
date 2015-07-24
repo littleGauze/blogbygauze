@@ -87,6 +87,7 @@ $(function(){
 				$(btn).prop('disabled', false).val(tips2);
 				setTimeout(function(){window.location = '/'}, 1000);
 			}else{
+				$(btn).prop('disabled', false).val('登陆');
 				showAlert(res.result_desc);
 			}
 		});
