@@ -1,6 +1,13 @@
 /*index js*/
 $(function(){
 
+	//litening enter key
+	$("body").keyup(function(e){
+		 if(e.keyCode == 13){
+		 	$("form input.submit").trigger('click');
+		 }
+	});
+
 	//handle register click
 	$("#switch-reg").click(function(){
 		var _this = $(this);
@@ -37,7 +44,7 @@ $(function(){
 	});
 
 	//验证表单
-	$("form input.btn").click(function(){
+	$("form input.submit").click(function(){
 		var _this = $(this);
 		var action = this.id;
 		var form = _this.parents('form')[0];
@@ -47,7 +54,7 @@ $(function(){
 		var username = form.username;
 		var userpass = form.userpass;
 		var reuserpass = form.reuserpass;
-
+		
 		var uname = username.value;
 		var upass = userpass.value;
 		var reupass = reuserpass.value;

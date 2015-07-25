@@ -19,7 +19,7 @@ router.post('/baseinfo', function(req, res){
 	Users.saveBaseinfo(params, function(rs){
 		rs = JSON.parse(rs);
 		//更新session信息
-		req.session.userinfo = rs.userinfo;
+		(rs.result_code == 200) && (req.session.userinfo = rs.userinfo);
 		res.send(rs);
 	});
 })

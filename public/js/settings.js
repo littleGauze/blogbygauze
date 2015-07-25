@@ -1,6 +1,8 @@
 /*settings js*/
 var Qiniu_UploadUrl = "http://up.qiniu.com";
 
+//
+
 $(function(){
 	var form = $("#baseinfo");
 	//上传图片
@@ -60,9 +62,11 @@ $(function(){
 
 		//保存数据
 		$.post('/settings/baseinfo', params, function(res){
-			alert(res.result_desc);
+			myModal.set('提示', res.result_desc);
 			if(res.result_code == 200){
-				window.location = '/settings';
+				myModal.show(1000, function(){window.location = '/settings';});
+			}else{
+				myModal.show(1000);
 			}
 		});
 	})

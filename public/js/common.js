@@ -73,7 +73,46 @@ $(function(){
 		}
 	});
 
+	//初始化模态框
+	window.myModal = new myModal();
+
 });
+
+function myModal(options, title, content){
+	var _this = $("#myModal");
+	var wtitle = _this.find('.modal-title');
+	var wcontent = _this.find('.modal-body');
+	var defaults = {
+		keyboard: true,
+		show: false
+	};
+
+	(typeof options == 'object') && (defaults = $.extend(defaults, options));
+
+	//初始化
+	_this.modal(defaults);
+
+	this.show = function(timeout, callback){
+		_this.modal('show');
+
+		(timeout = parseInt(timeout)) && setTimeout(function(){
+			_this.modal('hide');
+			(typeof callback == 'function') && callback(this);
+		}, timeout);
+	}
+
+	this.hide = function(){
+		_this.modal('hide');
+	}
+
+	this.set = function(title, content){
+		title && wtitle.html(title);
+		content && wcontent.html(content);
+
+		return this;
+	}
+
+}
 
 //警告框
 var ALERT_TPL = '<div class="alert alert-danger alert-dismissible" role="alert">'+
