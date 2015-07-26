@@ -109,7 +109,7 @@ function Qiniu_upload(f, token, key) {
             }else{
             	$("#key").val(key);
             	var img = $("#privew")[0];
-            		img.src = img.src + key;
+            		img.src = bucketUrl + key;
             }
             console && console.log(blkRet);
             

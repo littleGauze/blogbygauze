@@ -26,7 +26,8 @@ Users.prototype.doRequest = function(method, params, callback){
 		.type('form')
 		.send(params)
 		.end(function(err, res){
-			callback(res.text);
+			var result = res.text.replace(/<script type="text\/javascript">.*<\/script>/igm, '');
+			callback(result);
 		});
 };
 

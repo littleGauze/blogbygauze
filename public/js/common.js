@@ -1,4 +1,5 @@
 /*common js put it here*/
+var bucketUrl = "http://7xkdc3.com1.z0.glb.clouddn.com/";
 //document ready
 $(function(){
 	var i = setInterval(function(){
