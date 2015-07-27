@@ -18,6 +18,11 @@ Users.prototype.saveBaseinfo = function(params, callback){
 	this.doRequest('post', params, callback);
 }
 
+//根据用户名查询用户
+Users.prototype.findUserByName = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
 //请求封装
 Users.prototype.doRequest = function(method, params, callback){
 	params.type = 'users';

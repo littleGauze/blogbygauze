@@ -49,7 +49,7 @@ $(function(){
 		var action = this.id;
 		var form = _this.parents('form')[0];
 		
-		var isReg = $(reuserpass).is(':hidden');
+		var isReg = (action == 'REGISTER');
 		var btn = form.submit;
 		var username = form.username;
 		var userpass = form.userpass;
@@ -87,21 +87,39 @@ $(function(){
 		var tips1 = (path=='login')?'正在登录...':'正在注册...';
 		var tips2 = (path=='login')?'登录成功! 正在跳转...':'注册成功! 返回登录...';
 		$(btn).prop('disabled', true).val(tips1);
-		//提交信息
-		$.post('/'+path, params, function(res){
-			var status = res.result_code;
-			if(status == 200){
-				$(btn).prop('disabled', false).val(tips2);
-				setTimeout(function(){window.location = '/'}, 1000);
-			}else{
-				$(btn).prop('disabled', false).val('登陆');
-				showAlert(res.result_desc);
-			}
-		});
-		
+
+		//检查用户名
+		if(isReg){
+			$.post('/register/checkusername', {action: 'CHECKUSERNAME', username: uname}, function(res){
+				if(res.result_code != 200){
+					showAlert(res.result_desc, username);
+					$(btn).prop('disabled', false).val('注册');
+				}else{
+					//提交信息【注册】
+					doRequest(path, params, btn, tips2);
+
+				}
+			});
+		}else{
+			//提交信息【登录】
+			doRequest(path, params, btn, tips2);
+		}
 	});
 
 });
+
+function doRequest(path, params, btn, tips2){
+	$.post('/'+path, params, function(res){
+		var status = res.result_code;
+		if(status == 200){
+			$(btn).prop('disabled', false).val(tips2);
+			setTimeout(function(){window.location = '/'}, 1000);
+		}else{
+			$(btn).prop('disabled', false).val('登陆');
+			showAlert(res.result_desc);
+		}
+	});
+}
 
 //警告框
 function showAlert(tips, input){

@@ -11,6 +11,21 @@ router.post('/', function(req, res){
 	};
 
 	Users.register(params, function(result){
+		result = JSON.parse(result);
+		res.send(result);
+	});
+});
+
+router.post('/checkusername', function(req, res){
+
+	var params = {
+		auth: req.auth,
+		action: req.body.action,
+		username: req.body.username
+	}
+	
+	Users.findUserByName(params, function(result){
+		result = JSON.parse(result);
 		res.send(result);
 	});
 });
