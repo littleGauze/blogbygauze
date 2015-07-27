@@ -24,13 +24,13 @@
 								<% }; %>glyphicon glyphicon-home" href="/">
 							</a>
 						</li>
-						<% if(userinfo) {%>
 						<li class="col-xs-3">
-							<a class="<% if(/myfallows\/?/.test(url)) {%>
+							<a class="<% if(/searches\/?/.test(url)) {%>
 									<%='active'%>
-								<% }; %>glyphicon glyphicon-heart" href="/myfallows">
+								<% }; %>glyphicon glyphicon-search" href="/searches">
 							</a>
 						</li>
+						<% if(userinfo) {%>
 						<li class="col-xs-3">
 							<a class="<% if(/(myinfos)|(settings)\/?/.test(url)) {%>
 									<%='active'%>

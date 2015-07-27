@@ -134,6 +134,7 @@ div.side .other a.fallow{
 div.no-login{
 	position: relative;
 	margin-top: 30px;
+	margin-bottom: 20px;
 }
 
 div.no-login form input{
@@ -158,6 +159,37 @@ div.main{
 div.main-wrapper{
 	background-color: white;
 	box-shadow: 0 0 3px 1px #ccc;
+}
+div.wrapper-left,
+div.wrapper-right{
+	position: relative;
+}
+div.search-wrapper{
+}
+div.search-wrapper form{
+	width: 100%;
+}
+div.search-wrapper div.form-group{
+	margin-bottom: 0;
+}
+div.search-wrapper div.btn-group{
+	margin-left: 15px;
+	margin-bottom: 5px;
+}
+div.search-wrap{
+	position: relative;
+}
+div.search-wrap a{
+	position: absolute;
+	font-size: 20px;
+	color: #00AA7E;
+	right: 25px;
+	top: 6px;
+	cursor: pointer;
+}
+div.search-wrap a:hover{
+	text-decoration: none;
+	color: #00C18E;
 }
 div.main-wrap{
 	width: 106%;
@@ -245,7 +277,7 @@ div.blog ul li{
 
 a.publish{
 	position: fixed;
-	top: 80px;
+	top: 100px;
 	right: 20px;
 	font-size: 50px;
 	color: #00AA7E;
@@ -265,6 +297,9 @@ div.myinfo-wrapper{
 	background-color: white;
 	box-shadow: 0 0 3px 2px #ccc;
 	padding: 10px; 
+}
+div.myinfo div.infos{
+	margin-top: 10px;
 }
 div.myinfo div.avator{
 	

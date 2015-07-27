@@ -34,7 +34,9 @@ $(function(){
 		var heart = '<span class="tmp-heart glyphicon glyphicon-heart"></span>';
 		_this.append(heart).find("span.tmp-heart").animate({
 			fontSize: '100px',
-			opacity: 0
+			opacity: 0,
+			marginLeft: '-50px',
+			marginTop: '-50px'
 		});
 		_this
 			.next()

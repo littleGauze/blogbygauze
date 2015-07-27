@@ -9,7 +9,7 @@ var config = require('./common/config');
 var app = express();
 
 var index = require('./routes/index');
-var myfallows = require('./routes/myfallows');
+var searches = require('./routes/searches');
 var myinfos = require('./routes/myinfos');
 var aboutme = require('./routes/aboutme');
 var register = require('./routes/register');
@@ -42,7 +42,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/', index);
-app.use('/myfallows', myfallows);
+app.use('/searches', searches);
 app.use('/myinfos', myinfos);
 app.use('/aboutme', aboutme);
 app.use('/register', register);
