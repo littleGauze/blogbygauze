@@ -8,6 +8,7 @@ var utils = require('./common/Utils');
 var config = require('./common/config');
 var app = express();
 
+//routes
 var index = require('./routes/index');
 var searches = require('./routes/searches');
 var myinfos = require('./routes/myinfos');
@@ -17,6 +18,7 @@ var settings = require('./routes/settings');
 var qiniu = require('./routes/qiniu-api');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
+var publish = require('./routes/publish');
 
 app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname + '/views');
@@ -50,6 +52,7 @@ app.use('/settings', settings);
 app.use('/qiniu', qiniu);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/publish', publish);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

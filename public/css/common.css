@@ -14,6 +14,9 @@ a:focus{
 .float-right{
 	float: right;
 }
+textarea{
+	resize: none;
+}
 div.container-fluid div.container{
 	padding: 0;
 }
@@ -650,6 +653,39 @@ div.settings-wrap div.action-wrap{
 }
 div.settings-wrap div.action-wrap input{
 	width: 150px;
+}
+
+/* publish css */
+div.publish{
+	margin-top: 10px;
+	background-color: white;
+	padding: 10px;
+	box-shadow: 0 0 3px 1px #ccc;
+}
+div.post-wrapper{
+	min-height: 300px;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+div.post-wrapper img{
+	width: 100%;
+}
+div.publish div.action{
+	margin-top: 20px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+div.publish form{
+	margin-top: 10px;
+}
+div.publish form span{
+	color: #888;
+}
+div.publish form p{
+	margin-bottom: 10px;
+}
+div.publish div.action a{
+	width: 100px;
 }
 @media screen and (max-width: 600px){
 	div.nav-wrapper li[class*=col]{

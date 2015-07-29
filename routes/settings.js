@@ -5,8 +5,9 @@ var router = express.Router();
 router.all('*', function(req, res, next){
 	if(!req.session.userinfo){
 		res.redirect('/');
+	}else{
+		next();
 	}
-	next();
 });
 
 router.get('/', function(req, res){

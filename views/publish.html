@@ -1,0 +1,99 @@
+﻿<%- include('header.html'); %>
+	<div class="container">
+		<div class="container-wrap">
+			<div class="publish clearfix">
+				<div class="post-wrapper col-xs-12 col-md-6">
+					<img id="preview" src="http://<%= bucketLocation %>nealli/F0s1H50yMU031430TNhj488082YeD" alt="">
+				</div>
+				<form name="pubForm" class="form col-xs-12 col-md-6" action="">
+					<input type="hidden" name="username" value="<%= userinfo.user_name %>">
+					<input id="key" type="hidden" name="key" value="nealli/F0s1H50yMU031430TNhj488082YeD">
+					<p><input id="file" class="" type="file" name="file"></p>
+					<p><textarea class="form-control" name="desc" rows="5" placeholder="说点什么吧..."></textarea></p>
+				</form>
+				<div class="action col-xs-12">
+					<a id="cancel" class="btn btn-default" href="">取消</a>
+					<a id="publish" class="btn btn-success" href="">发表</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	$(function(){
+		var form = document.pubForm;
+		var publishBtn = $("#publish");
+		var cancelBtn = $("#cancel");
+		//监听文件表单
+		$("#file").change(function(e){
+			var _this = $(this);
+			var file = this;
+			var username = form.username;
+			var uname = $.trim(username.value);
+
+			//获取上传凭证
+			getUpToken(uname, function(res){
+				if(res){
+					token = res.uptoken;
+					key = res.key;
+
+					 if (file.files.length > 0 && token != "" && key) {
+				        Qiniu_upload(file.files[0], token, key, function(status, res){
+				        	if(status == 200){
+				        		if(res.error){
+					            	alert('上传失败!');
+					            }else{
+					            	$("#key").val(key);
+					            	publishBtn.prop('disabled', false);
+					            	var img = $("#preview")[0];
+					            		img.src = bucketUrl + key;
+					            }
+					            console && console.log(res);
+				        	}else{
+
+				        	}
+				        }, function(percent, speed){
+		      			 	console.log(percent, speed);
+				        });
+				    } else {
+				        console && console.log("form input error");
+				    }
+
+				   
+				}else{
+					alert('获取上传凭证失败!');
+				}
+			});
+		});
+
+		//保存发表信息到数据库
+		publishBtn.click(function(e){
+			var username = form.username.value;
+			var key = form.key.value;
+			var desc = form.desc.value;
+
+			if(username && key){
+
+				var params =  {
+					username: username,
+					key: key,
+					desc: desc
+				};
+								//提交数据
+				$.post('/publish/posts', params, function(res){
+					console.log(res);
+				});
+
+			}else{
+				alert("参数错误，请重新刷新页面！");
+			}
+
+		});
+
+		//处理取消发表
+		cancelBtn.click(function(e){
+
+		});
+
+	})
+	</script>
+<%- include('footer.html')%>

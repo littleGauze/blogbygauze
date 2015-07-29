@@ -1,5 +1,8 @@
 /*common js put it here*/
 var bucketUrl = "http://7xkdc3.com1.z0.glb.clouddn.com/";
+var Qiniu_UploadUrl = "http://up.qiniu.com";
+var BUCKETNAME = 'blogbygauze';
+
 //document ready
 $(function(){
 	var i = setInterval(function(){
@@ -158,3 +161,87 @@ function shuffleStr(str){
 
 	return rs;
 }
+
+//生成上传凭证的key
+function genaratorKey(uname){
+	var key = '';
+	key += getRandomKey(16);
+	key += new Date().getTime();
+	//打散字符串
+	key = shuffleStr(key);
+	key = uname + "/" + key;
+
+	return key;
+}
+
+//获取上传凭证
+function getUpToken(uname, callback){
+	//生成key
+	var bucketname = BUCKETNAME;
+	var key = genaratorKey(uname);
+		
+	var params = {
+			bucketname: bucketname + ":" + key
+		};
+
+		//获取上传凭证
+		$.post('/qiniu/getToken', params, function(res){
+
+			if(res.status == 'ok'){
+				token = res.uptoken;
+			    //执行回调
+			    callback({uptoken: token, key: key});
+
+			}else{
+				//执行回调
+			    callback(false);
+			}
+
+		});
+}
+
+//普通上传
+function Qiniu_upload(f, token, key, callback, progress) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', Qiniu_UploadUrl, true);
+    var formData, startDate;
+    formData = new FormData();
+    if (key !== null && key !== undefined) formData.append('key', key);
+    formData.append('token', token);
+    formData.append('file', f);
+    var taking;
+    xhr.upload.addEventListener("progress", function(evt) {
+        if (evt.lengthComputable) {
+            var nowDate = new Date().getTime();
+            taking = nowDate - startDate;
+            var x = (evt.loaded) / 1024;
+            var y = taking / 1000;
+            var uploadSpeed = (x / y);
+            var formatSpeed;
+            if (uploadSpeed > 1024) {
+                formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
+            } else {
+                formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
+            }
+            var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+            //进度回调
+            progress(percentComplete, formatSpeed);
+        }
+    }, false);
+
+    xhr.onreadystatechange = function(response) {
+        if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+            var blkRet = JSON.parse(xhr.responseText);
+            //成功回调
+            callback(xhr.status, blkRet);
+            
+        } else if (xhr.status != 200 && xhr.responseText) {
+        	//失败回调
+        	callback(xhr.status, xhr.responseText);
+        }
+    };
+
+    startDate = new Date().getTime();
+    
+    xhr.send(formData);
+};
