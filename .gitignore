@@ -1,2 +1,6 @@
-node_modules/
-!node_modules/qiniu/
+body-parser/
+cookie-parser/
+ejs/
+express/
+express-session/
+superagent/
