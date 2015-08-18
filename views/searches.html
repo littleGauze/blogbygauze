@@ -19,7 +19,7 @@
 								<div class="blog">
 									<div class="author">
 										<img src="http://<%= (bucketLocation + posts[i].user_avator_key) %>" alt="avator">
-										<a href=""><%= (posts[i].user_nick || posts[i].post_user) %></a>
+										<a href="zone/<%= posts[i].user_name %>"><%= (posts[i].user_nick || posts[i].post_user) %></a>
 										<span><%= posts[i].post_ctime %></span>
 									</div>
 									<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
@@ -29,16 +29,6 @@
 										<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
 										<span class="comment text-primary">33条评论</span>
 									</p>
-									<ul class="comments">
-										<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
-										<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
-									</ul>
-									<form method="" class="form col-xs-12" style="display: none;">
-										<div class="col-xs-10">
-											<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
-										</div>
-										<input class="btn btn-success btn-sm" type="button" value="发表">
-									</form>
 								</div>
 							<% } %>
 						<% } %>
@@ -49,7 +39,7 @@
 								<div class="blog">
 									<div class="author">
 										<img src="http://<%= (bucketLocation + posts[i].user_avator_key) %>" alt="avator">
-										<a href=""><%= (posts[i].user_nick || posts[i].post_user) %></a>
+										<a href="zone/<%= posts[i].user_name %>"><%= (posts[i].user_nick || posts[i].post_user) %></a>
 										<span><%= posts[i].post_ctime %></span>
 									</div>
 									<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
@@ -59,16 +49,6 @@
 										<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
 										<span class="comment text-primary">33条评论</span>
 									</p>
-									<ul class="comments">
-										<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
-										<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
-									</ul>
-									<form method="" class="form col-xs-12" style="display: none;">
-										<div class="col-xs-10">
-											<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
-										</div>
-										<input class="btn btn-success btn-sm" type="button" value="发表">
-									</form>
 								</div>
 							<% } %>
 						<% } %>

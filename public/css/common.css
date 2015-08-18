@@ -163,6 +163,16 @@ div.main-wrapper{
 	background-color: white;
 	box-shadow: 0 0 3px 1px #ccc;
 }
+div.main-wrapper a.fallow{
+	position: absolute;
+	padding: 0 10px;
+	margin: 0;
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
+	right: 5px;
+	bottom: 10px;
+}
 div.wrapper-left,
 div.wrapper-right{
 	position: relative;
@@ -366,7 +376,25 @@ div.myinfo div.action a.setting:hover{
 div.myinfo div.action a.logout:hover{
     color: #d43f3a;
 }
-
+div.myinfo div.action a.fallow{
+	background-color: #5cb85c;
+	padding: 3px 12px;
+	font-size: 14px;
+	color: white;
+	opacity: 0.7;
+}
+div.myinfo div.action a.unfallow{
+	background-color: #bbb;
+	border: 1px solid #aaa;
+	color: white;
+	padding: 3px 12px;
+	font-size: 14px;
+	opacity: 0.7;
+}
+div.myinfo div.action a.fallow:hover,
+div.myinfo div.action a.unfallow:hover{
+	opacity: 1;
+}
 div.mynav-wrapper{
 	position: relative;
 	border: 1px solid #ddd;

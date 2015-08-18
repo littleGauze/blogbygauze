@@ -1,10 +1,29 @@
 /*index js*/
 $(function(){
 
+	var posts = $("#POSTS").val();
+		posts = JSON.parse(posts);
+		getComments({
+			action: 'GETALL',
+			postid: 14
+		});
+	for(var i=0; i<posts.length; i++){
+		var post = posts[i];
+
+		var params = {
+			action: 'GETALL',
+			postid: post.post_no
+		};
+		console.log(params);
+		//getComments(params);
+
+	}
+
 	//litening enter key
 	$("body").keyup(function(e){
 		 if(e.keyCode == 13){
-		 	$("form input.submit").trigger('click');
+		 	var form = $("form input.submit");
+		 	form[0] && form.trigger('click');
 		 }
 	});
 
@@ -107,6 +126,12 @@ $(function(){
 	});
 
 });
+
+function getComments(params){
+	$.post('/message/getall', params, function(res){
+		//console.log(res);
+	});
+}
 
 function doRequest(path, params, btn, tips2){
 	$.post('/'+path, params, function(res){

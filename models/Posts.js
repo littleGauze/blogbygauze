@@ -13,6 +13,11 @@ Posts.prototype.findPostsByUname = function(params, callback){
 	this.doRequest('post', params, callback);
 }
 
+//查询我关注的帖子包括我的帖子
+Posts.prototype.findFallowPosts = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
 //查询所有最新的帖子
 Posts.prototype.findAllPosts = function(params, callback){
 	this.doRequest('post', params, callback);

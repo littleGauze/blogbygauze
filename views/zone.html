@@ -1,0 +1,102 @@
+﻿<%- include('header.html'); %>
+	<div class="container">
+		<div class="container-wrapper row">
+			<div class="myinfo">
+				<div class="myinfo-wrapper clearfix">
+					<div class="infos col-xs-12 col-md-6">
+						<div class="avator col-xs-5">
+							<img src="http://<%= (bucketLocation + user.user_avator_key) %>" alt="avator">
+						</div>
+						<div class="details col-xs-7">
+							<h3><%= user.user_nick || user.user_name %></h3>
+							<p><%= user.user_motto %></p>
+						</div>
+					</div>
+					<div class="impression col-xs-12 col-md-6">
+						<h3>好友印象</h3>
+						<div class="imp-wrapper">
+							<span class="bg-success">nice guy</span>
+							<span class="bg-danger">nice guy</span>
+							<span class="bg-warning">nice guy</span>
+							<span class="bg-primary">nice guy</span>
+							<span class="bg-info">nice guy</span>
+							<span class="bg-success">nice guy</span>
+							<span class="bg-danger">nice guy</span>
+							<span class="bg-primary">nice guy</span>
+							<span class="bg-warning">nice guy</span>
+						</div>
+					</div>
+					<div class="action">
+						<% if(userinfo){ %>
+						<a class="<% if(fallow){ %>unfallow<%}else{%>fallow<%}%> btn btn-success btn-sm" onclick="<% if(fallow){ %>doUnFallow<% }else{ %>doFallow<% } %>('<%=user.user_name%>','<%=userinfo.user_name%>','<%=userinfo.user_nick%>');" href="javascript:void(0);"><% if(fallow){ %>取消关注<%} else {%>关注<%}%></a>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<div class="main col-xs-12 col-sm-12">
+				<div class="main-wrapper clearfix">
+					<% for(var i in posts) {%>
+					<div class="blog">
+						<div class="author">
+							<img src="http://<%= (bucketLocation + user.user_avator_key) %>" alt="avator">
+							<a href="javascript:void(0);"><%=  (user.user_nick || user.user_name) %></a>
+							<span><%= posts[i].post_ctime %></span>
+						</div>
+						<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
+						<p>
+							<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
+							<span class="like text-primary">99次赞</span>
+							<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
+							<span class="comment text-primary">33条评论</span>
+						</p>
+						<ul class="comments">
+							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
+							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
+						</ul>
+						<form method="" class="form col-xs-12" style="display: none;">
+							<div class="col-xs-9 col-md-10">
+								<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
+							</div>
+							<input class="btn btn-success btn-sm" type="button" value="发表">
+						</form>
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+$(function(){
+
+});
+
+//do fallow
+function doFallow(poster, fans, nick){
+	$.post('/searches/fallow', {
+		user: poster,
+		me: fans,
+		nick: nick
+	}, function(res){
+		if(res.result_code == 200){
+			window.location.reload();
+		}else{
+			alert(res.result_desc);
+		}
+
+	});
+}
+function doUnFallow(poster, fans){
+	$.post('/searches/unfallow', {
+		user: poster,
+		me: fans
+	}, function(res){
+		if(res.result_code == 200){
+			window.location.reload();
+		}else{
+			alert(res.result_desc);
+		}
+
+	});
+}
+</script>
+<%- include('footer.html')%>

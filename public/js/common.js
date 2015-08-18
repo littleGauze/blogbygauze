@@ -59,18 +59,20 @@ $(function(){
 	//commnet clicked
 	$("a.comment").click(function(e){
 		var _this = $(this);
+		var forms = $("form.comment");
 		var form = _this.parents('div.blog').find('form');
+		forms.hide();
 		form.stop(true)
 			.slideDown('fast')
 			.find('input[name="comment"]').focus();
 	});
 
 	//hide the comment input when blur
-	$("input[name='comment']").blur(function(e){
+	/*$("input[name='comment']").blur(function(e){
 		var _this = $(this);
 		var form = _this.parents('form');
 		form.stop(true).slideUp('fast');
-	});
+	});*/
 
 	//logout
 	$("a.logout").click(function(e){
@@ -83,6 +85,40 @@ $(function(){
 	window.myModal = new myModal();
 
 });
+
+//填写评论
+function doComment(postid, from, to, _this){
+	var _this = $(_this),
+		input,form,params,content,parent,commentUl,tpl;
+
+	input = _this.prev().find('input');
+	form = _this.parents('form');
+	content = $.trim(input.val());
+	parent = _this.attr('parent');
+	commentUl = form.prev();
+
+	if(!content || !postid) return false;
+
+	params = {
+		action: 'COMMENT',
+		postid: postid,
+		content: content,
+		from: from,
+		to: to,
+		parent: parent || 0
+	};
+
+	$.post("message/commnet", params, function(result){
+		if(result.result_code == 200){
+			tpl = '<li id="'+ result.msgid +'"><a href="zone/'+ result.from +'">NealLi</a>: <span>'+ content +'</span></li>';
+			commentUl.append(tpl);
+			input.val('');
+		}else{
+			alert(result.result_desc);
+		}
+	});
+}
+
 
 function myModal(options, title, content){
 	var _this = $("#myModal");

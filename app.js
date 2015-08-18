@@ -19,6 +19,8 @@ var qiniu = require('./routes/qiniu-api');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
 var publish = require('./routes/publish');
+var zone = require('./routes/zone');
+var message = require('./routes/message');
 
 app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname + '/views');
@@ -53,6 +55,8 @@ app.use('/qiniu', qiniu);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/publish', publish);
+app.use('/zone', zone);
+app.use('/message', message);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

@@ -50,7 +50,7 @@ router.get('/myposts', function(req, res){
 	};
 
 	Posts.findPostsByUname(params, function(result){
-		console.log(result);
+		
 		res.send(result);
 
 	});
