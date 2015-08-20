@@ -1,7 +1,7 @@
 /*index js*/
 $(function(){
 
-	var posts = $("#POSTS").val();
+	/*var posts = $("#POSTS").val();
 		posts = JSON.parse(posts);
 		getComments({
 			action: 'GETALL',
@@ -17,7 +17,7 @@ $(function(){
 		console.log(params);
 		//getComments(params);
 
-	}
+	}*/
 
 	//litening enter key
 	$("body").keyup(function(e){
