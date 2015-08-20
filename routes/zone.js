@@ -6,7 +6,9 @@ router.get('/:name', function(req, res){
 	var uname = req.params.name,
 		userinfo = req.session.userinfo,
 		host = '';
-		host = userinfo.user_name || '';
+		if(userinfo){
+			host = userinfo.user_name
+		}
 	//如果自己点了自己则跳转到个人空间
 	if(host && uname == host){
 		res.redirect('/myinfos');
