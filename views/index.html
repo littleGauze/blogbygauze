@@ -16,6 +16,7 @@
 				<div class="mine">
 					<img src="http://<%= bucketLocation %><%=userinfo.user_avator_key%>" alt="avator">
 					<p><a class="name" href=""><%= userinfo.user_nick || userinfo.user_name %></a></p>
+					<input id="loginUser" type="hidden" name="loginUser" value="<%= userinfo.user_nick || userinfo.user_name %>">
 					<a class="logout glyphicon glyphicon-off" title="登出" href="javascript:void(0);"></a>
 				</div>
 				<% } %>
@@ -33,7 +34,6 @@
 					</div>
 				</div>
 			</div>
-			<textarea id="POSTS" class="hide"><%= JSON.stringify(posts) %></textarea>
 			<div class="main col-xs-12 col-sm-9">
 				<div class="main-wrapper clearfix">
 					<% for(var i in posts){%>
@@ -51,15 +51,20 @@
 								<span class="comment text-primary">33条评论</span>
 							</p>
 							<ul class="comments">
-								<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
-								<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
+								<li>正在加载...</li>
 							</ul>
 							<% if(userinfo){ %>
 							<form method="" onsubmit="return false;" class="comment form col-xs-12" style="display: none;">
 								<div class="col-xs-9 col-md-10">
+									<input type="hidden" name="pno" value="<%= posts[i].post_no %>">
+									<input type="hidden" name="from" value="<%= userinfo.user_name %>">
+									<input type="hidden" name="to" value="<%= posts[i].post_user %>">
+									<input type="hidden" name="fnick" value="<%= userinfo.user_nick %>">
+									<input type="hidden" name="tnick" value="<%= posts[i].user_nick %>">
+									<input type="hidden" name="parent" value="">
 									<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
 								</div>
-								<input class="btn btn-success btn-sm" onclick="doComment(<%= posts[i].post_no %>, '<%= userinfo.user_name %>', '<%= posts[i].post_user %>', this);" type="button" value="发表">
+								<input class="btn submitComment btn-success btn-sm" type="button" value="发表">
 							</form>
 							<% } %>
 						</div>

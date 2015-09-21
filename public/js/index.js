@@ -1,24 +1,52 @@
 /*index js*/
 $(function(){
 
-	/*var posts = $("#POSTS").val();
-		posts = JSON.parse(posts);
+	//get comments
+	$("div.blog").each(function(i, blog){
+		var id = blog.id.split('-')[1],
+			container = $(blog).find('ul.comments'),
+			loginUser = $("#loginUser").val(),
+			loaded;
+
+		loaded = container.hasClass('done');
+		
+		if(loaded) return false;
+
 		getComments({
 			action: 'GETALL',
-			postid: 14
+			postid: id
+		}, function(res){
+			if(res.result_code == 200){
+				var tpl = '',
+					comments = res.comments,
+					listen = '',
+					i,from,to;
+
+				for(i=0; i<comments.length; i++){
+					from = comments[i].message_from_nick || comments[i].message_from;
+					to = comments[i].message_to_nick || comments[i].message_to;
+
+					if(from != loginUser){
+						listen = 'class="reply" mno="'+ comments[i].message_no +'"';
+					}
+
+					if(comments[i].message_parent == 0){
+						tpl += '<li '+ listen +' ><a title="'+ from +'" href="zone/'+ comments[i].message_from +'">'+ from +'</a>: <span>'+ comments[i].message_content +'</span></li>';
+					}else{
+						tpl += '<li '+ listen +' user="'+ comments[i].message_from +'"><a title="'+ from +'" href="zone/'+ comments[i].message_from +'">'+ from +'</a>回复<a href="zone/'+ comments[i].message_to +'">'+ to +'</a>: <span>'+ comments[i].message_content +'</span></li>'
+					}
+				}
+
+				container.empty()
+						.append(tpl).
+						addClass('done');
+
+			}else{
+				container.empty();
+			}
 		});
-	for(var i=0; i<posts.length; i++){
-		var post = posts[i];
-
-		var params = {
-			action: 'GETALL',
-			postid: post.post_no
-		};
-		console.log(params);
-		//getComments(params);
-
-	}*/
-
+	});
+	
 	//litening enter key
 	$("body").keyup(function(e){
 		 if(e.keyCode == 13){
@@ -47,6 +75,31 @@ $(function(){
 			repass.slideUp();
 			btn.attr('id', 'LOGIN').val('登陆');
 		}
+	});
+
+	//reply commnet
+	$("body").on('click','li.reply',function(e){
+		var _this = $(this);
+		var msgno = _this.attr('mno');
+		var loginUser = $("#loginUser").val();
+		var forms = $("form.comment");
+		var form = _this.parents('div.blog').find('form');
+		var a = _this.find('a').first();
+		var uname = a.attr('title');
+		var user = a.attr('href').split('/')[1];
+
+		if(!form[0] || (loginUser == uname)) return false;
+
+		form[0].to.value = user;
+		form[0].tnick.value = uname;
+		form[0].parent.value = msgno;
+
+		forms.hide();
+		form.stop(true)
+			.slideDown('fast')
+			.find('input[name="comment"]')
+			.attr('placeholder', '回复：'+uname)
+			.focus();
 	});
 
 	//user login
@@ -126,12 +179,6 @@ $(function(){
 	});
 
 });
-
-function getComments(params){
-	$.post('/message/getall', params, function(res){
-		//console.log(res);
-	});
-}
 
 function doRequest(path, params, btn, tips2){
 	$.post('/'+path, params, function(res){

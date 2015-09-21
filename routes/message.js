@@ -8,7 +8,9 @@ router.post('/commnet', function(req, res){
 		action: req.body.action,
 		postid: req.body.postid,
 		from: req.body.from,
+		fnick: req.body.fnick,
 		to: req.body.to,
+		tnick: req.body.tnick,
 		content: req.body.content,
 		parent: req.body.parent
 	};

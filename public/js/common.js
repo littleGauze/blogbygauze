@@ -81,21 +81,28 @@ $(function(){
 		}
 	});
 
+	//submit comment
+	$("input.submitComment").click(function(e){
+		var _this = $(this),
+			form = this.form;
+
+		doComment(form);
+
+	});
+
 	//初始化模态框
 	window.myModal = new myModal();
 
 });
 
 //填写评论
-function doComment(postid, from, to, _this){
+function doComment(form){
 	var _this = $(_this),
-		input,form,params,content,parent,commentUl,tpl;
+		content = form.comment.value,
+		postid = form.pno.value,
+		params,commentUl,tpl;
 
-	input = _this.prev().find('input');
-	form = _this.parents('form');
-	content = $.trim(input.val());
-	parent = _this.attr('parent');
-	commentUl = form.prev();
+	commentUl = $(form).prev();
 
 	if(!content || !postid) return false;
 
@@ -103,16 +110,18 @@ function doComment(postid, from, to, _this){
 		action: 'COMMENT',
 		postid: postid,
 		content: content,
-		from: from,
-		to: to,
-		parent: parent || 0
+		from: form.from.value,
+		fnick: form.fnick.value || '',
+		to: form.to.value,
+		tnick: form.tnick.value || '',
+		parent: form.parent.value || 0
 	};
 
 	$.post("message/commnet", params, function(result){
 		if(result.result_code == 200){
 			tpl = '<li id="'+ result.msgid +'"><a href="zone/'+ result.from +'">NealLi</a>: <span>'+ content +'</span></li>';
 			commentUl.append(tpl);
-			input.val('');
+			form.comment.val('');
 		}else{
 			alert(result.result_desc);
 		}
@@ -208,6 +217,13 @@ function genaratorKey(uname){
 	key = uname + "/" + key;
 
 	return key;
+}
+
+//加载评论信息
+function getComments(params, callback){
+	$.post('/message/getall', params, function(res){
+		callback && callback(res);
+	});
 }
 
 //获取上传凭证

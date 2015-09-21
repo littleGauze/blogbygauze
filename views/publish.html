@@ -7,6 +7,7 @@
 				</div>
 				<form name="pubForm" class="form col-xs-12 col-md-6" action="">
 					<input type="hidden" name="username" value="<%= userinfo.user_name %>">
+					<input type="hidden" name="usernick" value="<%= userinfo.user_nick %>">
 					<input id="key" type="hidden" name="key" value="nealli/F0s1H50yMU031430TNhj488082YeD">
 					<p><input id="file" class="" type="file" name="file"></p>
 					<p><textarea class="form-control" name="desc" rows="5" placeholder="说点什么吧..."></textarea></p>
@@ -27,6 +28,7 @@
 		$("#file").change(function(e){
 			var _this = $(this);
 			var file = this;
+			var nick = form.usernick;
 			var username = form.username;
 			var uname = $.trim(username.value);
 
@@ -75,6 +77,7 @@
 
 				var params =  {
 					username: username,
+					nick: nick,
 					key: key,
 					desc: desc
 				};

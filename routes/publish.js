@@ -19,6 +19,7 @@ router.post('/posts', function(req, res){
 		auth: req.auth,
 		action: 'PUBLISH',
 		username: req.body.username,
+		nick: req.body.nick || '',
 		key: req.body.key,
 		desc: req.body.desc
 	}
