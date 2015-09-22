@@ -45,7 +45,8 @@ $(function(){
 			.next()
 			.find("a.like")
 			.removeClass('glyphicon-heart-empty')
-			.addClass('glyphicon-heart');
+			.addClass('glyphicon-heart').click();
+
 	});
 
 	//clike like btn
@@ -65,6 +66,93 @@ $(function(){
 		form.stop(true)
 			.slideDown('fast')
 			.find('input[name="comment"]').focus();
+	});
+
+	//reply commnet
+	$("body").on('click','li.reply',function(e){
+
+		var _this = $(this);
+		var msgno = _this.attr('mno');
+		var loginUser = $("#loginUser").val();
+		var forms = $("form.comment");
+		var form = _this.parents('div.blog').find('form');
+		var a = _this.find('a').first();
+		var uname = a.attr('title');
+		var user = a.attr('href').split('/')[1];
+
+		if(!form[0] || (loginUser == uname)){
+
+			form.stop(true)
+			.slideUp('fast')
+			return false;
+		};
+
+		form[0].to.value = user;
+		form[0].tnick.value = uname;
+		form[0].parent.value = msgno;
+
+		forms.hide();
+		form.stop(true)
+			.slideDown('fast')
+			.find('input[name="comment"]')
+			.attr('placeholder', '回复：'+uname)
+			.focus();
+	});
+
+	//get comments
+	$("div.blog").each(function(_, blog){
+		var id = blog.id.split('-')[1],
+			$blog = $(blog),
+			container = $blog.find('ul.comments'),
+			loginUser = $("#loginUser").val(),
+			count = 0,
+			loaded,commentLabel,likeLable;
+
+		loaded = container.hasClass('done');
+
+		commentLabel = $blog.find('span.comment span');
+		likeLable = $blog.find('span.like span');
+		
+		if(loaded) return false;
+
+		getComments({
+			action: 'GETALL',
+			postid: id
+		}, function(res){
+			if(res.result_code == 200){
+				var tpl = '',
+					comments = res.comments,
+					listen = '',
+					i,from,to;
+
+				for(i=0; i<comments.length; i++){
+					from = comments[i].message_from_nick || comments[i].message_from;
+					to = comments[i].message_to_nick || comments[i].message_to;
+
+					if(from != loginUser){
+						listen = 'class="reply"';
+					}
+
+					if(comments[i].message_parent == 0){
+						count++;
+						tpl += '<li id="'+ comments[i].message_no +'" '+ listen +'  mno="'+ comments[i].message_no +'"><a title="'+ from +'" href="zone/'+ comments[i].message_from +'">'+ from +'</a>: <span>'+ comments[i].message_content +'</span></li>';
+					}else{
+						tpl += '<li id="'+ comments[i].message_no +'" '+ listen +'  mno="'+ comments[i].message_parent +'"><a title="'+ from +'" href="zone/'+ comments[i].message_from +'">'+ from +'</a>回复<a href="zone/'+ comments[i].message_to +'">'+ to +'</a>: <span>'+ comments[i].message_content +'</span></li>'
+					}
+				}
+
+				container.empty()
+						.append(tpl).
+						addClass('done');
+
+			}else{
+				container.empty();
+			}
+
+			commentLabel.text(count);
+			likeLable.text(res.likes || 0);
+		});
+
 	});
 
 	//hide the comment input when blur
@@ -95,16 +183,45 @@ $(function(){
 
 });
 
+//点赞
+function doLike(postid, from, fnick, to, tnick, _this){
+	var _this = $(_this),
+		params,commentUl,tpl,likeLable;
+
+	if(!from || !to || !postid) return false;
+
+	likeLable = _this.next().find('span');
+
+	params = {
+		action: 'LIKE',
+		postid: postid,
+		from: from,
+		fnick: fnick || '',
+		to: to,
+		tnick: tnick || ''
+	};
+
+	$.post("/message/like", params, function(result){
+		if(result.result_code == 200){
+			likeLable.text(parseInt(likeLable.text())+1);
+		}
+	});
+}
+
 //填写评论
 function doComment(form){
 	var _this = $(_this),
 		content = form.comment.value,
 		postid = form.pno.value,
-		params,commentUl,tpl;
+		params,commentUl,tpl,commentLabel,from,to;
 
 	commentUl = $(form).prev();
+	commentLabel = commentUl.prev().find('span.comment span');
 
 	if(!content || !postid) return false;
+
+	from = form.fnick.value || form.from.value;
+	to = form.tnick.value || form.to.value;
 
 	params = {
 		action: 'COMMENT',
@@ -117,11 +234,18 @@ function doComment(form){
 		parent: form.parent.value || 0
 	};
 
-	$.post("message/commnet", params, function(result){
+	$.post("/message/commnet", params, function(result){
 		if(result.result_code == 200){
-			tpl = '<li id="'+ result.msgid +'"><a href="zone/'+ result.from +'">NealLi</a>: <span>'+ content +'</span></li>';
-			commentUl.append(tpl);
-			form.comment.val('');
+			if(params.parent == 0){
+				tpl = '<li id="'+ result.msgid +'"><a href="zone/'+ result.from +'">'+ from +'</a>: <span>'+ content +'</span></li>';
+				commentUl.append(tpl);
+			}else{
+				tpl = '<li id="'+ result.msgid +'"><a href="zone/'+ result.from +'">'+ from +'</a>回复<a href="zone/'+ result.to +'">'+ to +'</a>: <span>'+ content +'</span></li>';
+				$(tpl).insertAfter('li[mno='+ params.parent +']:last');
+			}
+			
+			commentLabel.text(parseInt(commentLabel.text())+1);
+			form.comment.value = '';
 		}else{
 			alert(result.result_desc);
 		}

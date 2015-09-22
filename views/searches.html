@@ -16,7 +16,7 @@
 					<div class="wrapper-left col-xs-12 col-md-6">
 						<% for(var i in posts){%>
 							<% if (i%2 == 0) {%>
-								<div class="blog">
+								<div id="post-<%= posts[i].post_no %>" class="blog">
 									<div class="author">
 										<img src="http://<%= (bucketLocation + posts[i].user_avator_key) %>" alt="avator">
 										<a href="zone/<%= posts[i].user_name %>"><%= (posts[i].user_nick || posts[i].post_user) %></a>
@@ -24,11 +24,14 @@
 									</div>
 									<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
 									<p>
-										<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
-										<span class="like text-primary">99次赞</span>
+										<a class="like glyphicon glyphicon-heart-empty" title="赞" <% if(userinfo){ %>onclick="doLike(<%=posts[i].post_no%>, '<%= userinfo.user_name %>', '<%= userinfo.user_nick %>', '<%= posts[i].user_name %>', '<%= posts[i].user_nick %>', this)"<% } %> href="javascript:void(0);"></a>
+										<span class="like text-primary"><span>...</span>次赞</span>
 										<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
-										<span class="comment text-primary">33条评论</span>
+										<span class="comment text-primary"><span>...</span>条评论</span>
 									</p>
+									<ul class="comments">
+										<li>正在加载...</li>
+									</ul>
 								</div>
 							<% } %>
 						<% } %>
@@ -36,7 +39,7 @@
 					<div class="wrapper-right col-xs-12 col-md-6">
 						<% for(var i in posts){%>
 							<% if (i%2 != 0) {%>
-								<div class="blog">
+								<div id="post-<%= posts[i].post_no %>" class="blog">
 									<div class="author">
 										<img src="http://<%= (bucketLocation + posts[i].user_avator_key) %>" alt="avator">
 										<a href="zone/<%= posts[i].user_name %>"><%= (posts[i].user_nick || posts[i].post_user) %></a>
@@ -44,11 +47,14 @@
 									</div>
 									<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
 									<p>
-										<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
-										<span class="like text-primary">99次赞</span>
+										<a class="like glyphicon glyphicon-heart-empty" title="赞" <% if(userinfo){ %>onclick="doLike(<%=posts[i].post_no%>, '<%= userinfo.user_name %>', '<%= userinfo.user_nick %>', '<%= posts[i].user_name %>', '<%= posts[i].user_nick %>', this)"<% } %> href="javascript:void(0);"></a>
+										<span class="like text-primary"><span>...</span>次赞</span>
 										<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
-										<span class="comment text-primary">33条评论</span>
+										<span class="comment text-primary"><span>...</span>条评论</span>
 									</p>
+									<ul class="comments">
+										<li>正在加载...</li>
+									</ul>
 								</div>
 							<% } %>
 						<% } %>

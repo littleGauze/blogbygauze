@@ -22,6 +22,23 @@ router.post('/commnet', function(req, res){
 
 });
 
+router.post('/like', function(req, res){
+	var params = {
+		auth: req.auth,
+		action: req.body.action,
+		postid: req.body.postid,
+		from: req.body.from,
+		fnick: req.body.fnick,
+		to: req.body.to,
+		tnick: req.body.tnick
+	};
+
+	msg.like(params, function(result){
+		result = JSON.parse(result);
+		res.send(result);
+	});
+});
+
 router.post('/getall', function(req, res){
 	var params = {
 		auth: req.auth,
@@ -30,6 +47,22 @@ router.post('/getall', function(req, res){
 	};
 
 	msg.getAll(params, function(result){
+		result = JSON.parse(result);
+		res.send(result);
+	});
+
+});
+
+router.post('/mymsg', function(req, res){
+	var params = {
+		auth: req.auth,
+		action: req.body.action,
+		user: req.body.user,
+		page: req.body.page,
+		limit: req.body.limit
+	};
+
+	msg.myMsg(params, function(result){
 		result = JSON.parse(result);
 		res.send(result);
 	});

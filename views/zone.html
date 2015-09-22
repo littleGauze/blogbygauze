@@ -36,7 +36,7 @@
 			<div class="main col-xs-12 col-sm-12">
 				<div class="main-wrapper clearfix">
 					<% for(var i in posts) {%>
-					<div class="blog">
+					<div id="post-<%= posts[i].post_no %>" class="blog">
 						<div class="author">
 							<img src="http://<%= (bucketLocation + user.user_avator_key) %>" alt="avator">
 							<a href="javascript:void(0);"><%=  (user.user_nick || user.user_name) %></a>
@@ -44,21 +44,28 @@
 						</div>
 						<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
 						<p>
-							<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
-							<span class="like text-primary">99次赞</span>
+							<a class="like glyphicon glyphicon-heart-empty" title="赞" <% if(userinfo){ %>onclick="doLike(<%=posts[i].post_no%>, '<%= userinfo.user_name %>', '<%= userinfo.user_nick %>', '<%= user.user_name %>', '<%= user.user_nick %>', this)"<% } %> href="javascript:void(0);"></a>
+							<span class="like text-primary"><span>...</span>次赞</span>
 							<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
-							<span class="comment text-primary">33条评论</span>
+							<span class="comment text-primary"><span>...</span>条评论</span>
 						</p>
 						<ul class="comments">
-							<li><a href="">Gauze</a>: <span>It's awesome.</span></li>
-							<li><a href="">NealLi</a>: <span>It's a piece of shit.</span></li>
+							<li>正在加载...</li>
 						</ul>
-						<form method="" class="form col-xs-12" style="display: none;">
+						<% if(userinfo){ %>
+						<form method="" onsubmit="return false;" class="comment form col-xs-12" style="display: none;">
 							<div class="col-xs-9 col-md-10">
+								<input type="hidden" name="pno" value="<%= posts[i].post_no %>">
+								<input type="hidden" name="from" value="<%= userinfo.user_name %>">
+								<input type="hidden" name="to" value="<%= posts[i].post_user %>">
+								<input type="hidden" name="fnick" value="<%= userinfo.user_nick %>">
+								<input type="hidden" name="tnick" value="<%= posts[i].user_nick %>">
+								<input type="hidden" name="parent" value="">
 								<input class="form-control input-sm" type="text" name="comment" placeholder="填写评论">
 							</div>
-							<input class="btn btn-success btn-sm" type="button" value="发表">
+							<input class="btn submitComment btn-success btn-sm" type="button" value="发表">
 						</form>
+						<% } %>
 					</div>
 					<% } %>
 				</div>

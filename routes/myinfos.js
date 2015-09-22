@@ -1,5 +1,6 @@
 var express = require('express');
 var Posts = require('../models/Posts');
+var msg = require('../models/Messages');
 var router = express.Router();
 
 router.all('*', function(req, res, next){
@@ -31,7 +32,25 @@ router.get('/', function(req, res){
 });
 
 router.get('/atme', function(req, res){
-	res.render('myinfos', {type: 'atme'});
+
+	var params = {
+		auth: req.auth,
+		action: 'MYMSG',
+		user: req.session.userinfo.user_name,
+		page: 1,
+		limit: 10
+	};
+
+	msg.myMsg(params, function(result){
+		result = JSON.parse(result);
+		if(result.result_code == 200){
+			res.render('myinfos', {type: 'atme', messages: result.messages});
+		}else{
+			res.render('myinfos', {type: 'atme', messages: []});
+		}
+
+	});
+
 });
 
 router.get('/friends', function(req, res){

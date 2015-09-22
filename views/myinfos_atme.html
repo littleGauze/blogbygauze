@@ -1,6 +1,8 @@
 ﻿<div class="main-wrap clearfix">
 	<div class="msg">
 		<div class="msg-wrapper clearfix">
+			<% for (var i =0; i<messages.length; i++){ %>
+			<% if(messages[i].message_type == 1){ %>
 			<div class="msg-item system col-xs-12">
 				<div class="item-wrap">
 					<h3>
@@ -12,6 +14,7 @@
 					</div>
 				</div>
 			</div>
+			<%} else {%>
 			<div class="msg-item commnet col-xs-12">
 				<div class="item-wrap">
 					<h3>
@@ -19,12 +22,12 @@
 						<a class="reply glyphicon glyphicon-share" title="回复" href=""></a>
 					</h3>
 					<p>
-						<a class="avator" href=""><img src="/imgs/avator.jpg" alt="avator"><span>Gauze</span><span class="time">2015-7-16 11:08</span></a>
+						<a class="avator" href=""><img src="http://<%= bucketLocation %><%=messages[i].user_avator_key%>" alt="avator"><span><%= messages[i].message_to_nick %></span><span class="time"><%= messages[i].message_ctime %></span></a>
 					</p>
-					<p class="current">You are wellcome.</p>
+					<p class="current"><%= messages[i].message_content %></p>
 					<div class="msg-content">
 						<div class="post-link">
-							<a href=""><img src="/imgs/avator.jpg" alt=""><span>it's awesome.</span></a>
+							<a href=""><img src="http://<%= bucketLocation %><%=messages[i].post_img_key%>" alt=""><span>it's awesome.</span></a>
 						</div>
 					</div>
 					<ul class="comments">
@@ -33,6 +36,8 @@
 					</ul>
 				</div>
 			</div>
+			<% } %>
+			<% } %>
 		</div>
 	</div>
 </div>

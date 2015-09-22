@@ -16,7 +16,6 @@
 				<div class="mine">
 					<img src="http://<%= bucketLocation %><%=userinfo.user_avator_key%>" alt="avator">
 					<p><a class="name" href=""><%= userinfo.user_nick || userinfo.user_name %></a></p>
-					<input id="loginUser" type="hidden" name="loginUser" value="<%= userinfo.user_nick || userinfo.user_name %>">
 					<a class="logout glyphicon glyphicon-off" title="登出" href="javascript:void(0);"></a>
 				</div>
 				<% } %>
@@ -45,10 +44,10 @@
 							</div>
 							<div class="picture"><img src="http://<%= (bucketLocation + posts[i].post_img_key) %>" alt="pic"></div>
 							<p>
-								<a class="like glyphicon glyphicon-heart-empty" title="赞" href="javascript:void(0);"></a>
-								<span class="like text-primary">99次赞</span>
+								<a class="like glyphicon glyphicon-heart-empty" title="赞" <% if(userinfo){ %>onclick="doLike(<%=posts[i].post_no%>, '<%= userinfo.user_name %>', '<%= userinfo.user_nick %>', '<%= posts[i].user_name %>', '<%= posts[i].user_nick %>', this)"<% } %> href="javascript:void(0);"></a>
+								<span class="like text-primary"><span>...</span>次赞</span>
 								<a class="comment glyphicon glyphicon-comment" title="评论" href="javascript:void(0);"></a>
-								<span class="comment text-primary">33条评论</span>
+								<span class="comment text-primary"><span>...</span>条评论</span>
 							</p>
 							<ul class="comments">
 								<li>正在加载...</li>

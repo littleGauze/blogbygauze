@@ -13,6 +13,16 @@ Messages.prototype.getAll = function(params, callback){
 	this.doRequest('post', params, callback);
 }
 
+//点赞
+Messages.prototype.like = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
+//获取我的消息
+Messages.prototype.myMsg = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
 //请求封装
 Messages.prototype.doRequest = function(method, params, callback){
 	params.type = 'message';

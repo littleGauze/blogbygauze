@@ -286,6 +286,7 @@ div.blog ul.comments{
 }
 div.blog ul li{
 	word-break: break-all;
+	line-height: 25px;
 }
 
 a.publish{
