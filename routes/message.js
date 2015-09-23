@@ -69,4 +69,19 @@ router.post('/mymsg', function(req, res){
 
 });
 
+router.post('/leavemsg', function(req, res){
+	var params = {
+		auth: req.auth,
+		action: req.body.action,
+		content: req.body.content,
+		parent: req.body.parent
+	};
+
+	msg.leaveMsg(params, function(result){
+		result = JSON.parse(result);
+		res.send(result);
+	});
+
+});
+
 module.exports = router;

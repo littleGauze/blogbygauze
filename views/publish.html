@@ -3,12 +3,12 @@
 		<div class="container-wrap">
 			<div class="publish clearfix">
 				<div class="post-wrapper col-xs-12 col-md-6">
-					<img id="preview" src="http://<%= bucketLocation %>nealli/F0s1H50yMU031430TNhj488082YeD" alt="">
+					<img id="preview" src="" alt="">
 				</div>
-				<form name="pubForm" class="form col-xs-12 col-md-6" action="">
+				<form name="pubForm" class="form col-xs-12 col-md-6" onsubmit="return false;" action="">
 					<input type="hidden" name="username" value="<%= userinfo.user_name %>">
 					<input type="hidden" name="usernick" value="<%= userinfo.user_nick %>">
-					<input id="key" type="hidden" name="key" value="nealli/F0s1H50yMU031430TNhj488082YeD">
+					<input id="key" type="hidden" name="key" value="">
 					<p><input id="file" class="" type="file" name="file"></p>
 					<p><textarea class="form-control" name="desc" rows="5" placeholder="说点什么吧..."></textarea></p>
 				</form>
@@ -72,18 +72,23 @@
 			var username = form.username.value;
 			var key = form.key.value;
 			var desc = form.desc.value;
+			var nick = form.usernick.value;
 
 			if(username && key){
 
 				var params =  {
 					username: username,
-					nick: nick,
 					key: key,
-					desc: desc
+					desc: desc,
+					nick: nick
 				};
 								//提交数据
 				$.post('/publish/posts', params, function(res){
-					console.log(res);
+					if(res.result_code == 200){
+						window.location = '../';
+					}else{
+						alert(res.result_desc);
+					}
 				});
 
 			}else{

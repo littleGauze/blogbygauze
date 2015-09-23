@@ -23,6 +23,16 @@ Messages.prototype.myMsg = function(params, callback){
 	this.doRequest('post', params, callback);
 }
 
+//留言
+Messages.prototype.leaveMsg = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
+//获取留言信息
+Messages.prototype.getLeaveMsg = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
 //请求封装
 Messages.prototype.doRequest = function(method, params, callback){
 	params.type = 'message';

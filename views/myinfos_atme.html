@@ -5,35 +5,47 @@
 			<% if(messages[i].message_type == 1){ %>
 			<div class="msg-item system col-xs-12">
 				<div class="item-wrap">
-					<h3>
-						<span class="glyphicon glyphicon-envelope"></span>
-						<a class="del glyphicon glyphicon-trash" title="删除" href=""></a>
-					</h3>
+					<p>
+						<a class="avator" href=""><img src="http://<%= bucketLocation %><%=messages[i].user_avator_key%>" alt="avator"><span><%= messages[i].message_from_nick %></span><span class="time"><%= messages[i].message_ctime %></span></a>
+					</p>
 					<div class="msg-content">
-						<p><a href="">Gauze</a> 开始关注您了...</p>
+						<p><%= messages[i].message_content %></p>
 					</div>
 				</div>
 			</div>
 			<%} else {%>
 			<div class="msg-item commnet col-xs-12">
 				<div class="item-wrap">
+					<% if(messages[i].message_type == 2){ %>
 					<h3>
 						<span class="glyphicon glyphicon-envelope"></span>
-						<a class="reply glyphicon glyphicon-share" title="回复" href=""></a>
+						<a class="reply glyphicon glyphicon-share" title="回复" href="javascript:void(0);"></a>
 					</h3>
+					<% } %>
 					<p>
-						<a class="avator" href=""><img src="http://<%= bucketLocation %><%=messages[i].user_avator_key%>" alt="avator"><span><%= messages[i].message_to_nick %></span><span class="time"><%= messages[i].message_ctime %></span></a>
+						<a class="avator" href=""><img src="http://<%= bucketLocation %><%=messages[i].user_avator_key%>" alt="avator"><span><%= messages[i].message_from_nick %></span><span class="time"><%= messages[i].message_ctime %></span></a>
 					</p>
 					<p class="current"><%= messages[i].message_content %></p>
 					<div class="msg-content">
 						<div class="post-link">
-							<a href=""><img src="http://<%= bucketLocation %><%=messages[i].post_img_key%>" alt=""><span>it's awesome.</span></a>
+							<a href=""><img src="http://<%= bucketLocation %><%=messages[i].post_img_key%>" alt=""><span><%= messages[i].post_desc || '您发表的图片' %></span></a>
 						</div>
 					</div>
 					<ul class="comments">
-						<li><a href="">Gauze</a>: <span>it's awesome.</span></li>
-						<li><a href="">littleGauze</a>回复<a href="">Gauze</a>: <span>Thanks.</span></li>
+						
 					</ul>
+					<form method="" onsubmit="return false;" class="comment form col-xs-12" style="display: none;">
+						<div class="col-xs-9 col-md-10">
+							<input type="hidden" name="pno" value="<%= messages[i].post_no %>">
+							<input type="hidden" name="from" value="<%= messages[i].message_to %>">
+							<input type="hidden" name="to" value="<%= messages[i].message_from %>">
+							<input type="hidden" name="fnick" value="<%= userinfo.user_nick %>">
+							<input type="hidden" name="tnick" value="<%= messages[i].user_nick %>">
+							<input type="hidden" name="parent" value="<%= (messages[i].message_parent==0?messages[i].message_no:messages[i].message_parent) %>">
+							<input class="form-control input-sm" type="text" name="comment" placeholder="回复 <%= messages[i].user_nick || messages[i].user_name %>">
+						</div>
+						<input class="btn submitComment btn-success btn-sm" type="button" value="发表">
+					</form>
 				</div>
 			</div>
 			<% } %>

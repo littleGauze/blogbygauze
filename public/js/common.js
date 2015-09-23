@@ -32,7 +32,7 @@ $(function(){
 	});
 
 	//double click like it
-	$("div.picture").dblclick(function(){
+	$("body").on('click', 'div.picture', function(){
 		var _this = $(this);
 		var heart = '<span class="tmp-heart glyphicon glyphicon-heart"></span>';
 		_this.append(heart).find("span.tmp-heart").animate({
@@ -50,7 +50,7 @@ $(function(){
 	});
 
 	//clike like btn
-	$("a.like").click(function(e){
+	$("body").on('click', 'a.like', function(e){
 		var _this = $(this);
 		_this
 			.removeClass('glyphicon-heart-empty')
@@ -58,10 +58,20 @@ $(function(){
 	});
 
 	//commnet clicked
-	$("a.comment").click(function(e){
+	$("body").on('click', 'a.comment', function(e){
 		var _this = $(this);
 		var forms = $("form.comment");
 		var form = _this.parents('div.blog').find('form');
+		forms.hide();
+		form.stop(true)
+			.slideDown('fast')
+			.find('input[name="comment"]').focus();
+	});
+
+	$("body").on('click', 'a.reply', function(e){
+		var _this = $(this);
+		var forms = $("form.comment");
+		var form = _this.parents('div.msg-item').find('form');
 		forms.hide();
 		form.stop(true)
 			.slideDown('fast')
@@ -170,7 +180,7 @@ $(function(){
 	});
 
 	//submit comment
-	$("input.submitComment").click(function(e){
+	$("body").on('click', 'input.submitComment', function(e){
 		var _this = $(this),
 			form = this.form;
 
@@ -182,6 +192,60 @@ $(function(){
 	window.myModal = new myModal();
 
 });
+
+//回复留言
+function replyLeaveMsg(mno, content){
+	var form = $("form.leave-msg")[0],
+		parent;
+
+		(content.length > 16) && (content = content.slice(0, 16)+'...');
+
+		$(form.content).attr('placeholder', '回复问题：'+content).focus();
+		form.parent.value = mno;
+
+}
+
+//留言
+function leaveMsg(form, _this){
+	var _this = $(_this),
+		content = form.content.value,
+		parent = form.parent.value,
+		tpl = '',
+		container = $("div.message-wrapper"),
+		replyContainer,
+		params;
+
+	if(!content) return false;
+	
+	params = {
+		action: 'LEAVEMSG',
+		content: content,
+		parent: parent,
+	};
+
+	$.post("/message/leavemsg", params, function(result){
+		if(result.result_code == 200){
+			if(parent){
+				replyContainer = $("#msg-"+parent).find('ul.answer');
+
+				tpl = '<li> '+ content +'</li>';
+				replyContainer.append(tpl);
+			}else{
+				tpl = '<div id="msg-'+ result.msgid +'" class="msg">'+
+						'<h3><span>Q</span>: '+ content +'<a title="回复" onclick="replyLeaveMsg('+ result.msgid + ', \''+ content +'\');" href="javascript:void(0);" class="glyphicon glyphicon-share"></a></h3>'+
+						'<ul class="answer">'+
+						'</li>'+
+					'</div>';
+
+				container.append(tpl);
+			}
+
+			$(form.content).attr('placeholder', '说点什么吧');
+			form.content.value = '';
+			form.parent.value = '';
+		}
+	});
+}
 
 //点赞
 function doLike(postid, from, fnick, to, tnick, _this){

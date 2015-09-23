@@ -3,7 +3,7 @@
 		<div class="container-wrap">
 			<div class="aboutme clearfix">
 				<div class="avator col-xs-12 col-md-5">
-					<img src="/imgs/avator.jpg" alt="avator">
+					<img src="http://7xkdc3.com1.z0.glb.clouddn.com/avator/avator.jpg" alt="avator">
 					<p>Gauze</p>
 				</div>
 				<div class="desc col-xs-12 col-md-7">
@@ -13,24 +13,22 @@
 				</div>
 				<div class="message col-xs-12">
 					<div class="message-wrapper">
-						<div class="msg">
-							<h3><span>Q</span>: 你是谁？<a title="回复" href="" class="glyphicon glyphicon-share"></a></h3>
+						<% for(var i in messages){ %>
+						<div id="msg-<%= messages[i].message_no %>" class="msg">
+							<h3><span>Q</span>: <%= messages[i].message_content  %><a title="回复" href="javascript:void(0);" onclick="replyLeaveMsg(<%= messages[i].message_no %>, '<%= messages[i].message_content  %>');" class="glyphicon glyphicon-share"></a></h3>
 							<ul class="answer">
-								<li>我就是我，是颜色不一样的烟火。</li>
-								<li>楼上是逗比吗？ 哈哈哈 </li>
-							</li>
+								<% for(var j in messages[i].replys){ %>
+								<li> <%= messages[i].replys[j].message_content %></li>
+								<% } %>
+							</ul>
 						</div>
-						<div class="msg">
-							<h3><span>Q</span>: 你是谁？<a title="回复" href="" class="glyphicon glyphicon-share"></a></h3>
-							<ul class="answer">
-								<li>我就是我，是颜色不一样的烟火。</li>
-							</li>
-						</div>
-						<form action="" class="form leave-msg clearfix">
-							<textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
-							<input type="button" class="btn btn-success pull-right" value="留言">
-						</form>
+						<% } %>
 					</div>
+					<form action="" class="form leave-msg clearfix">
+						<input type="hidden" name="parent" value="">
+						<textarea class="form-control" name="content" id="" cols="30" rows="5" placeholder="说点什么吧"></textarea>
+						<input type="button" onclick="leaveMsg(this.form, this);" class="btn btn-success pull-right" value="留言">
+					</form>
 				</div>
 			</div>
 		</div>
