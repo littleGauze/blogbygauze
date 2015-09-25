@@ -18,8 +18,7 @@ router.get('/:name', function(req, res){
 	var params = {
 		auth: req.auth,
 		action: 'MYPOSTS',
-		page: 1,
-		limit: 10,
+		page: req.query.page || 1,
 		username: uname,
 		fans: host
 	};

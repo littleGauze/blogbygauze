@@ -75,6 +75,7 @@ div.side{
 div.side .mine{
 	width: 70%;
 	margin: 20px auto;
+	text-align: center;
 }
 div.side .mine img{
 	
@@ -347,10 +348,27 @@ div.imp-wrapper{
 	overflow: auto;
 }
 div.impression h3{
+	display: inline-block;
 	text-indent: 5px;
 	color: #00AA7E;
 	font-weight: bold;
 	word-wrap: break-all;
+}
+div.impression .form-wrapper{
+	position: relative;
+	min-height: 25px;
+	min-width: 40px;
+	display: inline-block;
+}
+div.impression .form-wrapper a{
+	position: absolute;
+	right: 8px;
+	top: 4px;
+}
+div.impression a{
+	margin-left: 5px;
+	color: #666;
+	font-size: 25px;
 }
 div.imp-wrapper span{
 	padding: 3px 8px;

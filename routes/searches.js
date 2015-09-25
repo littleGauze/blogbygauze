@@ -8,8 +8,7 @@ router.get('/', function(req, res){
 	var params = {
 		auth: req.auth,
 		action: 'ALLPOSTS',
-		page: 1,
-		limit: 20
+		page: req.query.page || 1
 	};
 
 	if(req.session.userinfo){
@@ -40,7 +39,6 @@ router.post('/fallow', function(req, res){
 	};
 
 	Rels.fallow(params, function(result){
-		
 		result = JSON.parse(result);
 
 		res.send(result);

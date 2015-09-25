@@ -32,7 +32,7 @@ $(function(){
 	});
 
 	//double click like it
-	$("body").on('click', 'div.picture', function(){
+	$("body").on('dblclick', 'div.picture', function(){
 		var _this = $(this);
 		var heart = '<span class="tmp-heart glyphicon glyphicon-heart"></span>';
 		_this.append(heart).find("span.tmp-heart").animate({
@@ -244,6 +244,35 @@ function leaveMsg(form, _this){
 			form.content.value = '';
 			form.parent.value = '';
 		}
+	});
+}
+
+//do fallow
+function doFallow(poster, fans, nick){
+	$.post('/searches/fallow', {
+		user: poster,
+		me: fans,
+		nick: nick
+	}, function(res){
+		if(res.result_code == 200){
+			window.location.reload();
+		}else{
+			alert(res.result_desc);
+		}
+
+	});
+}
+function doUnFallow(poster, fans){
+	$.post('/searches/unfallow', {
+		user: poster,
+		me: fans
+	}, function(res){
+		if(res.result_code == 200){
+			window.location.reload();
+		}else{
+			alert(res.result_desc);
+		}
+
 	});
 }
 

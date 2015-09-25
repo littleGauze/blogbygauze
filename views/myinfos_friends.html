@@ -3,9 +3,9 @@
 		<form action="" class="form">
 			<div class="form-group">
 				<div class="btn-group pull-left">
-					<input class="btn btn-success btn-sm" type="button" name="all" value="全部">
-					<input class="btn btn-success btn-sm" type="button" name="fallow" value="关注">
-					<input class="btn btn-success btn-sm" type="button" name="fallower" value="粉丝">
+					<input class="btn btn-success btn-sm" type="button" onclick="getFriends('friends');" name="all" value="全部">
+					<input class="btn btn-success btn-sm" type="button" onclick="getFriends('fallowed');" name="fallowed" value="关注">
+					<input class="btn btn-success btn-sm" type="button" onclick="getFriends('fallowing');" name="fallowing" value="粉丝">
 				</div>
 				<div class="search-wrap col-xs-12 col-sm-8 col-lg-6">
 					<input class="form-control" type="text" name="keywords" placeholder="输入好友名称查找好友">
@@ -16,41 +16,69 @@
 	</div>
 	<div class="friends-list">
 		<div class="list-wrapper">
+			<% for(var i in lists){ %>
 			<div class="list-item">
-				<a href="">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<span>Gauze</span>
+				<a href="/zone/<%= lists[i].user_name %>">
+					<img src="http://<%= (bucketLocation + lists[i].user_avator_key) %>" alt="avator">
+					<span><%= lists[i].user_nick || lists[i].user_name %></span>
 				</a>
-				<a title="取消关注" class="action glyphicon glyphicon-heart" href=""></a>
+				<% if(lists[i].relations_eachother==1){ %>
+				<a title="取消关注" class="action glyphicon glyphicon-transfer" onclick="doUnFallow('<%= lists[i].user_name %>', '<%= userinfo.user_name %>');" href="javascript:void(0);"></a>
+				<%}else if(lists[i].relations_star == userinfo.user_name){%>
+				<a title="取消关注" class="action glyphicon glyphicon-heart-empty" onclick="doFallow('<%= lists[i].user_name %>', '<%= userinfo.user_name %>', '<%= userinfo.user_nick %>');" href="javascript:void(0);"></a>
+				<%}else{%>
+				<a title="关注" class="action glyphicon glyphicon-heart" onclick="doUnFallow('<%= lists[i].user_name %>', '<%= userinfo.user_name %>');" href="javascript:void(0);"></a>
+				<% } %>
 			</div>
-			<div class="list-item">
-				<a href="">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<span>Gauze</span>
-				</a>
-				<a title="取消关注" class="action glyphicon glyphicon-heart-empty" href=""></a>
-			</div>
-			<div class="list-item">
-				<a href="">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<span>Gauze</span>
-				</a>
-				<a title="关注" class="action glyphicon glyphicon-heart-empty" href=""></a>
-			</div>
-			<div class="list-item">
-				<a href="">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<span>Gauze</span>
-				</a>
-				<a title="取消关注" class="action glyphicon glyphicon-heart" href=""></a>
-			</div>
-			<div class="list-item">
-				<a href="">
-					<img src="/imgs/avator.jpg" alt="avator">
-					<span>Gauze</span>
-				</a>
-				<a title="取消关注" class="action glyphicon glyphicon-transfer" href=""></a>
-			</div>
+			<% } %>
 		</div>
 	</div>
 </div>
+<script>
+var page = 1,
+	loginUser,userNick;
+
+$(function(){
+	userNick = $("#loginUser").val();
+	loginUser = $("#loginName").val();
+});
+
+function getFriends(type){
+	page = 1;
+	$.get('/myinfos/'+type+'?page='+page, function(res){
+		parseData(res);
+	});
+}
+
+function parseData(data){
+	var tpl='',
+		tmp,i,
+		container = $("div.list-wrapper");
+
+	for(i=0; i<data.length; i++){
+		tpl += '<div class="list-item">';
+		tmp = data[i];
+		tpl += '<a href="/zone/'+ tmp.user_name +'">'+
+					'<img src="'+ bucketUrl + tmp.user_avator_key +'" alt="avator">'+
+					'<span>'+ tmp.user_nick || tmp.user_name +'</span>'+
+				'</a>';
+		if(tmp.relations_eachother == 1){
+			tpl += '<a title="取消关注" class="action glyphicon glyphicon-transfer" onclick="doUnFallow(\''+tmp.user_name +'\', \''+ loginUser +'\');" href="javascript:void(0);"></a>';
+		}else if(tmp.relations_star == loginUser){
+			tpl += '<a title="取消关注" class="action glyphicon glyphicon-heart-empty" onclick="doFallow(\''+tmp.user_name +'\', \''+ loginUser +'\', \''+ userNick +'\');" href="javascript:void(0);"></a>';
+		}else{
+			tpl += '<a title="关注" class="action glyphicon glyphicon-heart" onclick="doUnFallow(\''+tmp.user_name +'\', \''+ loginUser +'\');" href="javascript:void(0);"></a>';
+		}
+		tpl += '</div>';
+
+	}
+
+	if(page == 1){
+		container.empty().append(tpl);
+	}else{
+		container.append(tpl);
+	}
+
+}
+
+</script>

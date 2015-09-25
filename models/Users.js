@@ -18,6 +18,11 @@ Users.prototype.saveBaseinfo = function(params, callback){
 	this.doRequest('post', params, callback);
 }
 
+//修改用户密码
+Users.prototype.changePassword = function(params, callback){
+	this.doRequest('post', params, callback);
+}
+
 //根据用户名查询用户
 Users.prototype.findUserByName = function(params, callback){
 	this.doRequest('post', params, callback);

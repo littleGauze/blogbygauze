@@ -5,8 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res){
 	var params = {
 			auth: req.auth,
-			page: 1,
-			limit: 20
+			page: req.query.page || 1
 	};
 
 	if(!req.session.userinfo){

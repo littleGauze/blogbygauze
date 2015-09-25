@@ -14,6 +14,14 @@
 					</div>
 					<div class="impression col-xs-12 col-md-6">
 						<h3>好友印象</h3>
+						<div class="form-wrapper">
+							<form action="" class="form-inline hide">
+								<div class="form-group">
+									<input class="form-control" type="text" name="content" placeholder="您对他的印象如何？">
+								</div>
+							</form>
+							<a href="doImpression('<%= userinfo.user_name %>');" class="glyphicon glyphicon-edit" title="评价"></a>
+						</div>
 						<div class="imp-wrapper">
 							<span class="bg-success">nice guy</span>
 							<span class="bg-danger">nice guy</span>
@@ -72,38 +80,4 @@
 			</div>
 		</div>
 	</div>
-<script>
-$(function(){
-
-});
-
-//do fallow
-function doFallow(poster, fans, nick){
-	$.post('/searches/fallow', {
-		user: poster,
-		me: fans,
-		nick: nick
-	}, function(res){
-		if(res.result_code == 200){
-			window.location.reload();
-		}else{
-			alert(res.result_desc);
-		}
-
-	});
-}
-function doUnFallow(poster, fans){
-	$.post('/searches/unfallow', {
-		user: poster,
-		me: fans
-	}, function(res){
-		if(res.result_code == 200){
-			window.location.reload();
-		}else{
-			alert(res.result_desc);
-		}
-
-	});
-}
-</script>
 <%- include('footer.html')%>

@@ -32,4 +32,19 @@ router.post('/baseinfo', function(req, res){
 	});
 })
 
+router.post('/changepass', function(req, res){
+	var params = req.body,
+		username = req.session.userinfo.user_name;
+
+	params.username = username;
+	params.auth = req.auth;
+
+	Users.changePassword(params, function(rs){
+		rs = JSON.parse(rs);
+
+		res.send(rs);
+
+	});
+});
+
 module.exports = router;
